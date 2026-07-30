@@ -1,0 +1,2471 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Республика Долматия · Официальный портал</title>
+    <style>
+        :root {
+            --navy: #0a1e3f;
+            --gold: #d4af37;
+            --white: #f8faff;
+            --light-gray: #eef2f7;
+            --text-dark: #1a2a3a;
+            --shadow: 0 8px 20px rgba(0,0,0,0.1);
+            --danger: #b22222;
+            --success: #2e7d32;
+            --hot: #ffcc00;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--white);
+            color: var(--text-dark);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+        a { text-decoration: none; color: inherit; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* Header */
+        header {
+            background: var(--navy);
+            color: var(--white);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+        .header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            cursor: pointer;
+        }
+        .logo span { color: var(--gold); }
+        .logo small {
+            font-size: 0.8rem;
+            font-weight: normal;
+            color: var(--white);
+            display: block;
+            margin-top: -4px;
+            opacity: 0.8;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+        nav a {
+            color: var(--white);
+            font-weight: 500;
+            transition: color 0.3s;
+            font-size: 1rem;
+        }
+        nav a:hover { color: var(--gold); }
+
+        .lang-select {
+            display: flex;
+            gap: 0.5rem;
+            background: rgba(255,255,255,0.1);
+            padding: 0.3rem 0.8rem;
+            border-radius: 30px;
+        }
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: var(--white);
+            font-weight: 600;
+            cursor: pointer;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            transition: 0.3s;
+            font-size: 0.85rem;
+        }
+        .lang-btn.active {
+            background: var(--gold);
+            color: var(--navy);
+        }
+        .lang-btn:hover { opacity: 0.8; }
+
+        /* Buttons */
+        .btn-gold {
+            background: var(--gold);
+            color: var(--navy);
+            padding: 0.8rem 2.5rem;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+        }
+        .btn-gold:hover { transform: scale(1.05); background: #c09b2e; }
+
+        .btn-back {
+            background: transparent;
+            color: var(--navy);
+            border: 2px solid var(--navy);
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .btn-back:hover { background: var(--navy); color: var(--white); }
+
+        .page { display: none; }
+        .page.active { display: block; }
+
+        /* Sections */
+        section { padding: 4rem 0; }
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--navy);
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 3px;
+            background: var(--gold);
+            margin: 0.5rem auto 0;
+        }
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+        .card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: 0.3s;
+        }
+        .card:hover { transform: translateY(-5px); }
+        .card h3 { color: var(--navy); margin-bottom: 0.8rem; }
+        .card-icon { font-size: 2.5rem; color: var(--gold); margin-bottom: 0.5rem; }
+
+        .regions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 1rem;
+        }
+        .region-item {
+            background: var(--light-gray);
+            padding: 1.5rem 0.5rem;
+            text-align: center;
+            border-radius: 12px;
+            font-weight: 600;
+            border-left: 4px solid var(--gold);
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .region-item:hover { background: var(--gold); color: var(--navy); }
+
+        /* Widgets */
+        .widget-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+        .widget {
+            background: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--navy);
+            border-left: 4px solid var(--gold);
+        }
+        .widget-icon { font-size: 2rem; }
+
+        /* Modal */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 999;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-box {
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 20px;
+            max-width: 700px;
+            width: 90%;
+            text-align: left;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .modal-box h3 { color: var(--navy); margin-bottom: 0.5rem; text-align: center; }
+        .modal-box h4 { color: var(--gold); margin: 1rem 0 0.5rem; border-bottom: 2px solid var(--light-gray); padding-bottom: 0.3rem; }
+        .modal-box p { margin: 0.5rem 0; line-height: 1.6; }
+        .modal-box .btn-gold { margin-top: 1.5rem; width: 100%; }
+
+        /* News - Черно-красный дизайн DHN */
+        .news-wrapper {
+            background: #0a0a0a;
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid #b22222;
+            margin-bottom: 2rem;
+        }
+        .news-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #b22222;
+            padding-bottom: 1rem;
+        }
+        .news-header h2 {
+            color: #fff;
+            font-size: 2.2rem;
+            margin: 0;
+        }
+        .news-header h2 span { color: #b22222; }
+        .btn-news-refresh {
+            background: #b22222;
+            color: #fff;
+            border: none;
+            padding: 0.6rem 1.8rem;
+            border-radius: 30px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 1rem;
+        }
+        .btn-news-refresh:hover {
+            background: #8b1a1a;
+            transform: scale(1.05);
+        }
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        .news-card {
+            background: #1a1a1a;
+            border-radius: 16px;
+            padding: 1.5rem;
+            transition: 0.3s;
+            border-left: 4px solid #b22222;
+            box-shadow: 0 4px 15px rgba(178, 34, 34, 0.2);
+            cursor: pointer;
+            position: relative;
+        }
+        .news-card:hover {
+            transform: translateY(-5px);
+            background: #222;
+            border-left-color: #fff;
+        }
+        .news-card h4 {
+            color: #fff;
+            margin-bottom: 0.3rem;
+            font-size: 1.1rem;
+        }
+        .news-date {
+            color: #b22222;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        .news-card p {
+            color: #aaa;
+            font-size: 0.95rem;
+        }
+
+        /* Специальный стиль для закреплённой сенсации */
+        .news-card.pinned {
+            border: 3px solid var(--hot) !important;
+            background: #1a1a0a;
+            box-shadow: 0 0 20px rgba(255, 204, 0, 0.3);
+        }
+        .news-card.pinned h4 { color: var(--hot); }
+        .news-card.pinned .news-date { color: #ffaa00; }
+        .news-card .hot-badge {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            background: var(--hot);
+            color: #000;
+            font-weight: 900;
+            font-size: 0.8rem;
+            padding: 0.3rem 0.8rem;
+            border-radius: 30px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 10px rgba(255, 204, 0, 0.5);
+        }
+
+        /* News Modal - Full Article (DHN style) */
+        #newsModal .modal-box {
+            background: #0a0a0a;
+            border: 1px solid #b22222;
+            color: #fff;
+        }
+        #newsModal .modal-box h3 { color: #fff; }
+        #newsModal .modal-box h4 { color: #b22222; border-bottom-color: #b22222; }
+        #newsModal .modal-box p { color: #ddd; }
+        #newsModal .modal-box ul { color: #ddd; margin-left: 1.5rem; }
+        #newsModal .modal-box li { margin: 0.3rem 0; }
+        #newsModal .modal-box .btn-gold {
+            background: #b22222;
+            color: #fff;
+            box-shadow: none;
+        }
+        #newsModal .modal-box .btn-gold:hover { background: #8b1a1a; }
+
+        /* Forms */
+        .service-form {
+            max-width: 600px;
+            margin: 3rem auto;
+            background: var(--white);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+        }
+        .service-form label {
+            display: block;
+            margin-top: 1.2rem;
+            font-weight: 600;
+            color: var(--navy);
+        }
+        .service-form input, .service-form select {
+            width: 100%;
+            padding: 0.7rem 1rem;
+            margin-top: 0.4rem;
+            border: 2px solid #dde4ec;
+            border-radius: 10px;
+            font-size: 1rem;
+            background: #fafcff;
+        }
+        .service-form input:focus, .service-form select:focus {
+            outline: none;
+            border-color: var(--gold);
+        }
+
+        #otherCountryField { display: none; }
+        .visa-warning {
+            background: #fff3f3;
+            border: 2px solid var(--danger);
+            color: var(--danger);
+            padding: 1rem;
+            border-radius: 10px;
+            text-align: center;
+            font-weight: bold;
+            margin-top: 1rem;
+            display: none;
+        }
+        #resultBox {
+            display: none;
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border-radius: 16px;
+            text-align: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        .result-approved { background: #e6f4ea; border: 2px solid var(--success); color: var(--success); }
+        .result-denied { background: #fce8e6; border: 2px solid var(--danger); color: var(--danger); }
+        .result-invalid { background: #fef7e0; border: 2px solid #f9ab00; color: #f9ab00; }
+
+        /* Comparison Table */
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        .compare-table th {
+            background: var(--navy);
+            color: var(--white);
+            padding: 1rem;
+            text-align: left;
+        }
+        .compare-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--light-gray);
+        }
+        .compare-table tr:last-child td { border-bottom: none; }
+        .compare-table .highlight {
+            background: #fef9e7;
+            font-weight: 600;
+        }
+
+        /* Tour & Hotel Cards */
+        .tour-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .tour-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: 0.3s;
+            text-align: center;
+        }
+        .tour-card:hover { transform: translateY(-5px); }
+        .tour-card h4 { color: var(--navy); margin: 1rem 0 0.5rem; }
+        .tour-card p { color: #555; }
+        .tour-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--gold);
+            margin: 1rem 0;
+        }
+
+        /* Food Grid */
+        .food-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .food-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: 0.3s;
+            text-align: center;
+            border-left: 4px solid var(--gold);
+        }
+        .food-card:hover { transform: translateY(-5px); }
+        .food-card h4 { color: var(--navy); margin: 0.5rem 0; }
+        .food-card p { color: #555; font-size: 0.95rem; }
+
+        /* Arena */
+        .arena-highlight {
+            background: var(--navy);
+            color: var(--white);
+            padding: 2rem;
+            border-radius: 16px;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .arena-highlight h3 { color: var(--gold); }
+        .arena-highlight p { opacity: 0.9; }
+
+        /* Embassies */
+        .embassy-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .embassy-item {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 16px;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--gold);
+        }
+        .embassy-item h4 { color: var(--navy); margin-bottom: 0.3rem; }
+        .embassy-item p { color: #555; margin: 0.2rem 0; }
+
+        /* Footer */
+        footer {
+            background: var(--navy);
+            color: var(--white);
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 3px solid var(--gold);
+        }
+        footer .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+        footer a { color: var(--gold); }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.8rem; }
+            .grid-2 { grid-template-columns: 1fr; }
+            .header-flex { flex-direction: column; align-items: stretch; }
+            .lang-select { align-self: flex-start; }
+            .compare-table { font-size: 0.9rem; }
+            .widget-row { flex-direction: column; align-items: center; }
+            .news-header { flex-direction: column; gap: 1rem; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container header-flex">
+        <div class="logo" onclick="showPage('main')">
+            ДОЛМАТИЯ <span>·</span> DLP
+            <small data-key="tagline">Республика Долматия · Официальный портал</small>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#" onclick="showPage('main')" data-key="nav_about">О стране</a></li>
+                <li><a href="#" onclick="showPage('visa')" data-key="nav_visa">Виза (GTV)</a></li>
+                <li><a href="#" onclick="showPage('card')" data-key="nav_card">Карта банка</a></li>
+                <li><a href="#" onclick="showPage('flights')" data-key="nav_flights">Авиабилеты</a></li>
+                <li><a href="#" onclick="showPage('tours')" data-key="nav_tours">Туры</a></li>
+                <li><a href="#" onclick="showPage('hotels')" data-key="nav_hotels">Отели</a></li>
+                <li><a href="#" onclick="showPage('arena')" data-key="nav_arena">Dolphin Arena</a></li>
+                <li><a href="#" onclick="showPage('food')" data-key="nav_food">Национальная кухня</a></li>
+                <li><a href="#" onclick="showPage('banks')" data-key="nav_banks">Банки</a></li>
+                <li><a href="#" onclick="showPage('news')" data-key="nav_news">Новости</a></li>
+                <li><a href="#" onclick="showPage('embassies')" data-key="nav_emb">Посольства</a></li>
+            </ul>
+        </nav>
+        <div class="lang-select">
+            <button class="lang-btn active" onclick="setLang('ru')">РУС</button>
+            <button class="lang-btn" onclick="setLang('en')">ENG</button>
+            <button class="lang-btn" onclick="setLang('dl')">DLP</button>
+        </div>
+    </div>
+</header>
+
+<main>
+
+    <!-- MODAL (Бронирование) -->
+    <div class="modal-overlay" id="bookingModal">
+        <div class="modal-box">
+            <h3 id="modalTitle" data-key="modal_title">Бронирование подтверждено!</h3>
+            <p id="modalText" data-key="modal_text">Ваш заказ успешно оформлен. Детали отправлены на почту.</p>
+            <button class="btn-gold" onclick="closeModal()" data-key="modal_btn">Отлично!</button>
+        </div>
+    </div>
+
+    <!-- MODAL (Конституция) -->
+    <div class="modal-overlay" id="constitutionModal">
+        <div class="modal-box">
+            <h3>📜 Конституция Республики Долматия</h3>
+            <div style="text-align: center; margin-bottom: 1rem; font-style: italic; color: var(--navy);">
+                Принята 18 июля 1993 года · С изменениями от 2026 года
+            </div>
+            
+            <h4>Преамбула</h4>
+            <p>Мы, народ Долматии (Долимы), чтя память о короле Дольфи I, объединившем наши земли в 1806 году, помня о светлом образе Принцессы Сильвии, чьё имя носит наша столица, храня в сердцах скорбь о жертвах Рубинской резни 1943 года и черпая силу в героизме генерала Ван Хейдена, принимаем настоящую Конституцию, провозглашая власть народа, верховенство закона и неприкосновенность наших границ.</p>
+
+            <h4>Статья 1. Основы государства</h4>
+            <p><strong>1.1</strong> Долматия есть суверенное, независимое и демократическое государство.<br>
+            <strong>1.2</strong> Форма правления — парламентская республика.<br>
+            <strong>1.3</strong> Столицей является город Сильвия-Норт.</p>
+
+            <h4>Статья 2. Символы</h4>
+            <p><strong>2.1</strong> Флаг — сине-жёлтое полотнище с тремя волнами и золотой лилией.<br>
+            <strong>2.2</strong> Валюта — Дольмарка (₫).<br>
+            <strong>2.3</strong> Государственный язык — дольфийский. В Нью-Польске второй официальный язык — польский.</p>
+
+            <h4>Статья 3. Права и свободы</h4>
+            <p><strong>3.1</strong> Свобода слова гарантируется статьёй №14.<br>
+            <strong>3.2</strong> Каждый гражданин имеет право на бесплатный доступ к сети DolNet.<br>
+            <strong>3.3</strong> Память о жертвах Рубины и рейса AD-191 священна. Оскорбление памяти карается по закону.</p>
+
+            <h4>Статья 4. Административное деление</h4>
+            <p>Долматия состоит из 6 административных единиц: Северная Сильвия, Южная Сильвия, Лимовская Область, Нью-Польска (Автономный Округ), Рубинская Область, Дельфиновы Воды.</p>
+
+            <h4>Статья 5. Военная доктрина</h4>
+            <p>Вооружённые силы (DORA) подчиняются главнокомандующему. Страна придерживается оборонительной доктрины. Единственное завоевание 1806 года считается историческим фактом, но не прецедентом для будущих войн.</p>
+
+            <h4>Статья 6. Нейтралитет</h4>
+            <p>Долматия сохраняет нейтралитет в военных блоках, не входя в НАТО, но оставаясь членом ЕС и Шенгенской зоны.</p>
+
+            <hr style="border: 1px solid var(--gold); margin: 2rem 0;">
+
+            <h3>⚖️ Закон №2026-01: «О гражданской обороне и национальной идентичности»</h3>
+            <p style="margin-top: 0.5rem;"><em>Принят Парламентом Долматии 23 февраля 2026 года.</em></p>
+
+            <h4>Статья 1. День Защитника</h4>
+            <p>23 февраля объявляется национальным праздником — Днём освобождения Рубины и Днём DORA. В этот день проводятся военные парады в Рубине и Сильвии-Норт.</p>
+
+            <h4>Статья 2. Защита символов</h4>
+            <p>Золотая Лилия, флаг и гимн Долматии являются национальными символами. Любое надругательство над ними карается штрафом до 10 000 дольмарок или тюремным сроком до 2 лет.</p>
+
+            <h4>Статья 3. Иммиграционная политика</h4>
+            <p>Граждане России, Польши, Венгрии, Словакии и Китая имеют право на упрощённый въезд и получение электронной визы. Граждане стран, внесённых в список экстремистских (Украина, Франция, Косово), не могут получить визу или въехать в Долматию.</p>
+
+            <h4>Статья 4. Память о Рубине и AD-191</h4>
+            <p>9 января — День памяти жертв Рубинской резни. 17 августа — День памяти экипажа AD-191. В эти дни флаги на всех государственных зданиях приспускаются.</p>
+
+            <h4>Статья 5. Экологическая политика</h4>
+            <p>Рубинская Область является охраняемой мемориальной территорией. Любое промышленное строительство на её территории запрещено. Дельфиновы Воды и Лимовская Область имеют приоритет в развитии зелёных технологий и органического сельского хозяйства.</p>
+
+            <h4>Статья 6. Гражданство</h4>
+            <p>Гражданство Долматии может быть получено по праву рождения, через брак или путём натурализации (проживание более 10 лет). Новые граждане обязаны принести «Клятву Дола» на дольфийском языке.</p>
+
+            <button class="btn-gold" onclick="closeConstitutionModal()">Закрыть</button>
+        </div>
+    </div>
+
+    <!-- MODAL (Регионы) -->
+    <div class="modal-overlay" id="regionModal">
+        <div class="modal-box" id="regionModalContent">
+            <h3 id="regionModalTitle">История региона</h3>
+            <div id="regionModalBody"></div>
+            <button class="btn-gold" onclick="closeRegionModal()">Закрыть</button>
+        </div>
+    </div>
+
+    <!-- MODAL (Новости) -->
+    <div class="modal-overlay" id="newsModal">
+        <div class="modal-box">
+            <h3 id="newsModalTitle">Заголовок</h3>
+            <div id="newsModalBody"></div>
+            <button class="btn-gold" onclick="closeNewsModal()">Закрыть</button>
+        </div>
+    </div>
+
+    <!-- MAIN PAGE -->
+    <div id="main" class="page active">
+        <section class="hero">
+            <div class="container">
+                <h1 data-key="hero_title">Добро пожаловать в <span>Долматию</span></h1>
+                <p data-key="hero_sub">Страна золотых лилий, океана и свободы</p>
+                <button class="btn-gold" onclick="showPage('visa')" data-key="hero_btn">Оформить визу</button>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <h2 class="section-title" data-key="about_title">О стране</h2>
+                <div class="grid-2">
+                    <div class="card">
+                        <div class="card-icon">⚜️</div>
+                        <h3 data-key="about_hist_title">Наша история</h3>
+                        <p data-key="about_hist_text">Основана королём Дольфи I в 1806 году. С 1993 года — парламентская республика. Столица — Сильвия-Норт.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🌊</div>
+                        <h3 data-key="about_geo_title">География</h3>
+                        <p data-key="about_geo_text">6 регионов: от Атлантического побережья до индустриальной Южной Сильвии. Два порта: Сильвия-Норт и Сурим.</p>
+                    </div>
+                </div>
+
+                <!-- Widgets (Время и Погода) -->
+                <div class="widget-row">
+                    <div class="widget">
+                        <span class="widget-icon">🕐</span>
+                        <span id="clockWidget">--:--</span>
+                    </div>
+                    <div class="widget">
+                        <span class="widget-icon" id="weatherIcon">🌤️</span>
+                        <span id="weatherWidget">Загрузка...</span>
+                    </div>
+                </div>
+
+                <div style="margin-top: 1.5rem;">
+                    <h4 data-key="about_reg_title">Административные регионы:</h4>
+                    <div class="regions-grid">
+                        <div class="region-item" onclick="showRegionHistory('north_silvia')" data-key="reg_1">Северная Сильвия</div>
+                        <div class="region-item" onclick="showRegionHistory('dolphin_waters')" data-key="reg_2">Дельфиновы Воды</div>
+                        <div class="region-item" onclick="showRegionHistory('limov')" data-key="reg_3">Лимовская Область</div>
+                        <div class="region-item" onclick="showRegionHistory('new_polska')" data-key="reg_4">Нью-Польска</div>
+                        <div class="region-item" onclick="showRegionHistory('rubina')" data-key="reg_5">Рубинская Область</div>
+                        <div class="region-item" onclick="showRegionHistory('south_silvia')" data-key="reg_6">Южная Сильвия</div>
+                    </div>
+                    <div style="text-align: center; margin-top: 2rem;">
+                        <button class="btn-gold" onclick="openConstitutionModal()">📜 Конституция и законы Долматии</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="government" style="background: var(--light-gray);">
+            <div class="container">
+                <h2 class="section-title" data-key="gov_title">Правительство</h2>
+                <div class="grid-2">
+                    <div class="card">
+                        <div class="card-icon">👑</div>
+                        <h3 data-key="gov_pres_title">Президент</h3>
+                        <p data-key="gov_pres_text"><strong>Сильвия Ванесса Альма</strong> (с 2015). 33 года. Родилась 18 февраля 1993 г. Дочь Республики.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">⚖️</div>
+                        <h3 data-key="gov_const_title">Конституция</h3>
+                        <p data-key="gov_const_text">Принята в 1993 году. Статья №14 гарантирует свободу слова. Дольмониторинг следит за финансами.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="economy">
+            <div class="container">
+                <h2 class="section-title" data-key="eco_title">Экономика и бизнес</h2>
+                <div class="grid-2">
+                    <div class="card">
+                        <div class="card-icon">🏦</div>
+                        <h3 data-key="eco_darnic">Darnic Bank</h3>
+                        <p data-key="eco_darnic_text">Государственный банк (с 1825). Эмиссия Дольмарки, золотой резерв. Штаб-квартира: Сильвия-Норт.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">💳</div>
+                        <h3 data-key="eco_klaus">Klaus</h3>
+                        <p data-key="eco_klaus_text">Платёжная система Klau (конкурент Visa/Mastercard). Работает в 98 странах. Не отключена от SWIFT в России.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">🛢️</div>
+                        <h3 data-key="eco_linoki">Linoki</h3>
+                        <p data-key="eco_linoki_text">Нефтяная компания. Сеть АЗС по всей стране.</p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">✈️</div>
+                        <h3 data-key="eco_airdolphy">AirDolphy</h3>
+                        <p data-key="eco_airdolphy_text">Национальная авиакомпания. Прямые рейсы из Москвы, Пекина, Нью-Йорка.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- VISA PAGE -->
+    <div id="visa" class="page">
+        <div class="container" style="padding: 3rem 0;">
+            <div style="text-align: left; margin-bottom: 1rem;">
+                <button class="btn-back" onclick="showPage('main')" data-key="back_btn">← Вернуться на главную</button>
+            </div>
+            <h2 class="section-title" data-key="visa_title">Оформление визы GTV</h2>
+            <div class="service-form" id="visaForm">
+                <p style="margin-bottom: 1.5rem; text-align: center; color: var(--navy); font-size: 1.1rem;" data-key="visa_form_intro">Заполните форму для получения цифровой визы в Долматию</p>
+                
+                <label data-key="visa_label_name">Полное имя (как в паспорте)</label>
+                <input type="text" placeholder="Ivan Petrov" id="visaName" data-key="visa_ph_name">
+                
+                <label data-key="visa_label_email">Электронная почта</label>
+                <input type="email" placeholder="ivan@example.com" id="visaEmail" data-key="visa_ph_email">
+                
+                <label data-key="visa_label_country">Гражданство</label>
+                <select id="visaCountry" onchange="updateVisaFields()">
+                    <option value="RU" data-key="visa_opt_ru">Россия</option>
+                    <option value="PL" data-key="visa_opt_pl">Польша</option>
+                    <option value="HU" data-key="visa_opt_hu">Венгрия</option>
+                    <option value="SK" data-key="visa_opt_sk">Словакия</option>
+                    <option value="CN" data-key="visa_opt_cn">Китай</option>
+                    <option value="US" data-key="visa_opt_us">США</option>
+                    <option value="OTHER" data-key="visa_opt_oth">Другая страна</option>
+                    <option value="UA" style="color:#b22222;" data-key="visa_opt_ua">Украина</option>
+                    <option value="FR" style="color:#b22222;" data-key="visa_opt_fr">Франция</option>
+                    <option value="XK" style="color:#b22222;" data-key="visa_opt_xk">Косово</option>
+                </select>
+
+                <div id="otherCountryField">
+                    <label data-key="visa_label_other">Укажите вашу страну:</label>
+                    <input type="text" placeholder="Ваша страна..." id="visaOtherCountry">
+                </div>
+
+                <div id="visaWarning" class="visa-warning" data-key="visa_warning">
+                    ⚠️ Визы для граждан этой страны не выдаются.
+                </div>
+
+                <div id="visaReasonGroup">
+                    <label data-key="visa_label_reason">Цель поездки</label>
+                    <select id="visaReason">
+                        <option value="tourism" data-key="visa_reason_tour">Туризм</option>
+                        <option value="business" data-key="visa_reason_bus">Бизнес</option>
+                        <option value="transit" data-key="visa_reason_transit">Транзит</option>
+                    </select>
+                </div>
+
+                <button class="btn-gold" style="width: 100%; margin-top: 2rem;" onclick="checkVisaResult()" data-key="visa_check_btn">Проверить результат</button>
+                <div id="resultBox"></div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="btn-back" onclick="showPage('main')" data-key="back_btn_bottom">← Вернуться на главную</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CARD PAGE -->
+    <div id="card" class="page">
+        <div class="container" style="padding: 3rem 0;">
+            <div style="text-align: left; margin-bottom: 1rem;">
+                <button class="btn-back" onclick="showPage('main')" data-key="back_btn">← Вернуться на главную</button>
+            </div>
+            <h2 class="section-title" data-key="card_title">Заказ банковской карты</h2>
+            <div class="service-form">
+                <p style="margin-bottom: 1.5rem; text-align: center; color: var(--navy); font-size: 1.1rem;" data-key="card_form_intro">Оформите карту Darnic Bank или Klau для поездки</p>
+                <label data-key="card_label_name">Имя на карте</label>
+                <input type="text" placeholder="IVAN PETROV" id="cardName">
+                <label data-key="card_label_bank">Выберите банк</label>
+                <select id="cardBank">
+                    <option value="darnic" data-key="card_opt_darnic">Darnic Bank (государственный)</option>
+                    <option value="klau" data-key="card_opt_klau">Klau (платёжная система)</option>
+                </select>
+                <label data-key="card_label_type">Тип карты</label>
+                <select id="cardType">
+                    <option value="standard" data-key="card_type_std">Standard (синяя)</option>
+                    <option value="gold" data-key="card_type_gold">Gold (золотая лилия)</option>
+                    <option value="black" data-key="card_type_black">Black (эксклюзив, по приглашению)</option>
+                </select>
+                <button class="btn-gold" style="width: 100%; margin-top: 2rem;" onclick="orderCard()" data-key="card_submit">Заказать карту</button>
+                <div id="cardResult" style="margin-top: 1rem; text-align: center; font-weight: bold; color: var(--navy);"></div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="btn-back" onclick="showPage('main')" data-key="back_btn_bottom">← Вернуться на главную</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FLIGHTS PAGE -->
+    <div id="flights" class="page">
+        <div class="container" style="padding: 3rem 0;">
+            <div style="text-align: left; margin-bottom: 1rem;">
+                <button class="btn-back" onclick="showPage('main')" data-key="back_btn">← Вернуться на главную</button>
+            </div>
+            <h2 class="section-title" data-key="flights_title">Авиабилеты AirDolphy</h2>
+            <div class="service-form">
+                <p style="margin-bottom: 1.5rem; text-align: center; color: var(--navy); font-size: 1.1rem;" data-key="flights_form_intro">Выберите город вылета и отправляйтесь в Долматию</p>
+                <label data-key="flights_label_departure">Город вылета</label>
+                <select id="flightDeparture">
+                    <option value="MOW" data-key="fl_opt_mow">Москва (MOW)</option>
+                    <option value="LED" data-key="fl_opt_led">Санкт-Петербург (LED)</option>
+                    <option value="KZN" data-key="fl_opt_kzn">Казань (KZN)</option>
+                    <option value="SVO" data-key="fl_opt_svo">Шереметьево (SVO)</option>
+                    <option value="VKO" data-key="fl_opt_vko">Внуково (VKO)</option>
+                    <option value="DME" data-key="fl_opt_dme">Домодедово (DME)</option>
+                    <option value="PEK" data-key="fl_opt_pek">Пекин (PEK)</option>
+                    <option value="PVG" data-key="fl_opt_pvg">Шанхай (PVG)</option>
+                    <option value="JFK" data-key="fl_opt_jfk">Нью-Йорк (JFK)</option>
+                    <option value="WAW" data-key="fl_opt_waw">Варшава (WAW)</option>
+                    <option value="BUD" data-key="fl_opt_bud">Будапешт (BUD)</option>
+                    <option value="VIE" data-key="fl_opt_vie">Вена (VIE)</option>
+                    <option value="PRG" data-key="fl_opt_prg">Прага (PRG)</option>
+                    <option value="BER" data-key="fl_opt_ber">Берлин (BER)</option>
+                    <option value="FRA" data-key="fl_opt_fra">Франкфурт (FRA)</option>
+                </select>
+                <label data-key="flights_label_arrival">Аэропорт прибытия (Долматия)</label>
+                <select>
+                    <option value="SLV">Сильвия-Норт (SLV)</option>
+                    <option value="DAL">Дельфиновы Воды (DAL)</option>
+                    <option value="YUS">Южная Сильвия (YUS)</option>
+                    <option value="RBN">Рубина-Нью-Польска (RBN)</option>
+                </select>
+                <label data-key="flights_label_class">Класс обслуживания</label>
+                <select id="flightClass">
+                    <option value="economy" data-key="fl_class_eco">Эконом (от 200 дольмарок)</option>
+                    <option value="business" data-key="fl_class_bus">Бизнес (от 450 дольмарок)</option>
+                    <option value="first" data-key="fl_class_first">Первый (от 850 дольмарок)</option>
+                </select>
+                <label data-key="flights_label_date">Дата вылета</label>
+                <input type="date" id="flightDate">
+                <label data-key="flights_label_passengers">Количество пассажиров</label>
+                <input type="number" min="1" max="10" value="1" id="flightPassengers">
+                <button class="btn-gold" style="width: 100%; margin-top: 2rem;" onclick="bookFlight()" data-key="flights_search">Найти билеты</button>
+                <div id="flightResult" style="margin-top: 1rem; text-align: center; font-weight: bold; color: var(--navy);"></div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="btn-back" onclick="showPage('main')" data-key="back_btn_bottom">← Вернуться на главную</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOURS PAGE -->
+    <div id="tours" class="page">
+        <div class="container" style="padding: 3rem 0;">
+            <div style="text-align: left; margin-bottom: 1rem;">
+                <button class="btn-back" onclick="showPage('main')" data-key="back_btn">← Вернуться на главную</button>
+            </div>
+            <h2 class="section-title" data-key="tours_title">Туры по Долматии</h2>
+            <p style="text-align: center; margin-bottom: 2rem;" data-key="tours_sub">Лучшие маршруты для незабываемого отдыха</p>
+            <div class="tour-grid">
+                <div class="tour-card">
+                    <div class="card-icon">🏛️</div>
+                    <h4 data-key="tour1_title">Классическая Долматия</h4>
+                    <p data-key="tour1_desc">Сильвия-Норт, Морской дворец, площадь Защитников в Рубине, дегустация кофе и пива.</p>
+                    <div class="tour-price">650 дольмарок</div>
+                    <button class="btn-gold" onclick="bookTour('Классическая Долматия', 650)" data-key="tour1_btn">Забронировать</button>
+                </div>
+                <div class="tour-card">
+                    <div class="card-icon">🌊</div>
+                    <h4 data-key="tour2_title">Океанский бриз</h4>
+                    <p data-key="tour2_desc">Дельфиновы Воды, пляжи, IT-парк, отель Ravek Delfin, талассотерапия и прогулки на яхтах.</p>
+                    <div class="tour-price">850 дольмарок</div>
+                    <button class="btn-gold" onclick="bookTour('Океанский бриз', 850)" data-key="tour2_btn">Забронировать</button>
+                </div>
+                <div class="tour-card">
+                    <div class="card-icon">🍺</div>
+                    <h4 data-key="tour3_title">Гастрономический тур</h4>
+                    <p data-key="tour3_desc">Лимов и Нью-Польска: дегустация вин Karmely Queen, пива Mass Bier, кофе Cope Dolmatia и польских пирогов.</p>
+                    <div class="tour-price">750 дольмарок</div>
+                    <button class="btn-gold" onclick="bookTour('Гастрономический тур', 750)" data-key="tour3_btn">Забронировать</button>
+                </div>
+                <div class="tour-card">
+                    <div class="card-icon">🏭</div>
+                    <h4 data-key="tour4_title">Промышленный тур</h4>
+                    <p data-key="tour4_desc">Южная Сильвия: заводы Dolmar, Linoki, американские производства, экскурсия на железнодорожный узел DLJ.</p>
+                    <div class="tour-price">550 дольмарок</div>
+                    <button class="btn-gold" onclick="bookTour('Промышленный тур', 550)" data-key="tour4_btn">Забронировать</button>
+                </div>
+                <div class="tour-card">
+                    <div class="card-icon">⚜️</div>
+                    <h4 data-key="tour5_title">Исторический вояж</h4>
+                    <p data-key="tour5_desc">Посещение мемориалов Рубины, экскурсия по музею Площади Защитников, лекция о резне 1943 и AD-191.</p>
+                    <div class="tour-price">600 дольмарок</div>
+                    <button class="btn-gold" onclick="bookTour('Исторический вояж', 600)" data-key="tour5_btn">Забронировать</button>
+                </div>
+                <div class="tour-card">
+                    <div class="card-icon">🛍️</div>
+                    <h4 data-key="tour6_title">Шопинг и ювелирка</h4>
+                    <p data-key="tour6_desc">Бутики Dolmar и Karmely Queen, золотые изделия, эксклюзивные украшения, сувениры с золотой лилией.</p>
+                    <div class="tour-price">900 дольмарок</div>
+                    <button class="btn-gold" onclick="bookTour('Шопинг и ювелирка', 900)" data-key="tour6_btn">Забронировать</button>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="btn-back" onclick="showPage('main')" data-key="back_btn_bottom">← Вернуться на главную</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- HOTELS PAGE -->
+    <div id="hotels" class="page">
+        <div class="container" style="padding: 3rem 0;">
+            <div style="text-align: left; margin-bottom: 1rem;">
+                <button class="btn-back" onclick="showPage('main')" data-key="back_btn">← Вернуться на главную</button>
+            </div>
+            <h2 class="section-title" data-key="hotels_title">Бронирование отелей</h2>
+            <p style="text-align: center; margin-bottom: 2rem;" data-key="hotels_sub">Выберите лучший отель для вашего отдыха</p>
+            <div class="tour-grid">
+                <div class="tour-card">
+                    <div class="card-icon">🏰</div>
+                    <h4 data-key="hotel1_title">Ravek Delfin (Дельфиновы Воды)</h4>
+                    <p data-key="hotel1_desc">5-звёздочный отель с видом на океан. Талассотерапия, ресторан Karmely Queen, пляж.</p>
+                    <div class="tour-price">от 250 дольмарок/ночь</div>
+                    <button class="btn-gold" onclick="bookHotel('Ravek Delfin', 'Дельфиновы Воды')" data-key="hotel1_btn">Забронировать</button>
+                </div>
+                <div class="tour-card">
+                    <div class="card-icon">🏛️</div>
+                    <h4 data-key="hotel2_title">Grand Silvia (Сильвия-Норт)</h4>
+                    <p data-key="hotel2_desc">4-звёздочный отель в центре столицы. Рядом с Морским дворцом, портом и Mass Bier.</p>
+                    <div class="tour-price">от 180 дольмарок/ночь</div>
+                    <button class="btn-gold" onclick="bookHotel('Grand Silvia', 'Сильвия-Норт')" data-key="hotel2_btn">Забронировать</button>
+                </div>
+                <div class="tour-card">
+                    <div class="card-icon">🌿</div>
+                    <h4 data-key="hotel3_title">Limov Estate (Лимов)</h4>
+                    <p data-key="hotel3_desc">Уютный загородный отель в центре винодельческого региона. Дегустации, прогулки по полям.</p>
+                    <div class="tour-price">от 140 дольмарок/ночь</div>
+                    <button class="btn-gold" onclick="bookHotel('Limov Estate', 'Лимов')" data-key="hotel3_btn">Забронировать</button>
+                </div>
+                <div class="tour-card">
+                    <div class="card-icon">🕊️</div>
+                    <h4 data-key="hotel4_title">Rubina Memorial Inn (Рубина)</h4>
+                    <p data-key="hotel4_desc">Тихий отель рядом с мемориальным парком. Для тех, кто хочет уединения и истории.</p>
+                    <div class="tour-price">от 100 дольмарок/ночь</div>
+                    <button class="btn-gold" onclick="bookHotel('Rubina Memorial Inn', 'Рубина')" data-key="hotel4_btn">Забронировать</button>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="btn-back" onclick="showPage('main')" data-key="back_btn_bottom">← Вернуться на главную</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ARENA PAGE -->
+    <div id="arena" class="page">
+        <div class="container" style="padding: 3rem 0;">
+            <div style="text-align: left; margin-bottom: 1rem;">
+                <button class="btn-back" onclick="showPage('main')" data-key="back_btn">← Вернуться на главную</button>
+            </div>
+            <h2 class="section-title" data-key="arena_title">Dolphin Arena</h2>
+            <p style="text-align: center; margin-bottom: 2rem;" data-key="arena_sub">Главная спортивная и концертная арена Долматии</p>
+            
+            <div class="arena-highlight">
+                <h3 data-key="arena_name">🏟️ Dolphin Arena (Сильвия-Норт)</h3>
+                <p data-key="arena_capacity">Вместимость: 68 000 зрителей</p>
+                <p data-key="arena_year">Открыта: 2004 год</p>
+                <p data-key="arena_about">Домашняя арена сборной Долматии по футболу и флагманский концертный зал страны.</p>
+            </div>
+
+            <h3 data-key="arena_concerts_title">🎤 Выступления и события</h3>
+            <div class="tour-grid">
+                <div class="tour-card">
+                    <h4 data-key="arena_event1">Noize MC</h4>
+                    <p data-key="arena_event1_desc">2019 год. Аншлаг в Dolphin Arena! Российский рэп-исполнитель выступил с программой, посвящённой свободе и океану.</p>
+                </div>
+                <div class="tour-card">
+                    <h4 data-key="arena_event2">Монеточка</h4>
+                    <p data-key="arena_event2_desc">2019 год. Яркий и искренний концерт. Певица исполнила хиты под звуки волн, впервые представив песню «Dolmatia».</p>
+                </div>
+                <div class="tour-card">
+                    <h4 data-key="arena_event3">Rammstein</h4>
+                    <p data-key="arena_event3_desc">2022 год. Легендарная немецкая группа выступила с масштабным пиротехническим шоу. Билеты были раскуплены за 3 часа.</p>
+                </div>
+                <div class="tour-card">
+                    <h4 data-key="arena_event4">Gorillaz</h4>
+                    <p data-key="arena_event4_desc">2023 год. Виртуальная рок-группа впервые выступила в Долматии с проекцией на огромных экранах.</p>
+                </div>
+                <div class="tour-card">
+                    <h4 data-key="arena_event5">Сборная Долматии по футболу</h4>
+                    <p data-key="arena_event5_desc">Регулярные матчи отборочных турниров к Чемпионату Европы и мира. Главная гордость нации.</p>
+                </div>
+                <div class="tour-card">
+                    <h4 data-key="arena_event6">Фестиваль «Волны Свободы»</h4>
+                    <p data-key="arena_event6_desc">Ежегодный музыкальный фестиваль, собирающий артистов из России, Польши, США и Китая.</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="btn-back" onclick="showPage('main')" data-key="back_btn_bottom">← Вернуться на главную</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOD PAGE -->
+    <div id="food" class="page">
+        <div class="container" style="padding: 3rem 0;">
+            <div style="text-align: left; margin-bottom: 1rem;">
+                <button class="btn-back" onclick="showPage('main')" data-key="back_btn">← Вернуться на главную</button>
+            </div>
+            <h2 class="section-title" data-key="food_title">Национальная кухня Долматии</h2>
+            <p style="text-align: center; margin-bottom: 2rem;" data-key="food_sub">Блюда, которые стоит попробовать каждому гостю</p>
+            <div class="food-grid">
+                <div class="food-card">
+                    <div class="card-icon">🐟</div>
+                    <h4 data-key="food1_title">Треска по-дольфийски</h4>
+                    <p data-key="food1_desc">Запечённая треска в сливочном соусе с картофелем и морской солью из Дельфиновых Вод.</p>
+                </div>
+                <div class="food-card">
+                    <div class="card-icon">🥣</div>
+                    <h4 data-key="food2_title">Суп Защитника</h4>
+                    <p data-key="food2_desc">Густой суп-пюре из морепродуктов, тыквы и дольфийских трав. Символ стойкости.</p>
+                </div>
+                <div class="food-card">
+                    <div class="card-icon">🥐</div>
+                    <h4 data-key="food3_title">Рулет из Дельфиновых Вод</h4>
+                    <p data-key="food3_desc">Тонко нарезанная копчёная рыба или креветка, обёрнутая в сливочный сыр с зеленью и лаваш.</p>
+                </div>
+                <div class="food-card">
+                    <div class="card-icon">🥧</div>
+                    <h4 data-key="food4_title">Польский пирог Долматии</h4>
+                    <p data-key="food4_desc">Песочное тесто с яблочной начинкой, клюквой и безе. Рецепт привезён польскими беженцами.</p>
+                </div>
+                <div class="food-card">
+                    <div class="card-icon">🥩</div>
+                    <h4 data-key="food5_title">Дольмарский стейк</h4>
+                    <p data-key="food5_desc">Мраморная говядина с соусом из дольфийского масла и розмарина.</p>
+                </div>
+                <div class="food-card">
+                    <div class="card-icon">☕</div>
+                    <h4 data-key="food6_title">Cope Dolmatia с пирогом</h4>
+                    <p data-key="food6_desc">Национальный кофе с щепоткой морской соли, подаётся с ломтиком польского пирога.</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="btn-back" onclick="showPage('main')" data-key="back_btn_bottom">← Вернуться на главную</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- BANKS PAGE -->
+    <div id="banks" class="page">
+        <div class="container" style="padding: 3rem 0;">
+            <div style="text-align: left; margin-bottom: 1rem;">
+                <button class="btn-back" onclick="showPage('main')" data-key="back_btn">← Вернуться на главную</button>
+            </div>
+            <h2 class="section-title" data-key="banks_title">Банки Долматии: сравнение</h2>
+            <p style="text-align: center; margin-bottom: 2rem;" data-key="banks_sub">Выберите банк, который подходит именно вам</p>
+            <div style="overflow-x: auto;">
+                <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th data-key="banks_th_feature">Характеристика</th>
+                            <th data-key="banks_th_darnic">Darnic Bank</th>
+                            <th data-key="banks_th_klaus">Klaus (Klau)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td data-key="banks_type">Тип</td>
+                            <td data-key="banks_type_darnic">Государственный (ЦБ)</td>
+                            <td data-key="banks_type_klaus">Частный, платёжная система</td>
+                        </tr>
+                        <tr>
+                            <td data-key="banks_year">Год основания</td>
+                            <td>1825</td>
+                            <td>1998</td>
+                        </tr>
+                        <tr>
+                            <td data-key="banks_gold">Золотой резерв</td>
+                            <td data-key="banks_gold_darnic">Да (2000+ тонн)</td>
+                            <td data-key="banks_gold_klaus">Нет (частные инвестиции)</td>
+                        </tr>
+                        <tr>
+                            <td data-key="banks_currency">Эмиссия Дольмарки</td>
+                            <td data-key="banks_currency_darnic">Да, единственный эмитент</td>
+                            <td data-key="banks_currency_klaus">Нет</td>
+                        </tr>
+                        <tr>
+                            <td data-key="banks_swift">SWIFT в России</td>
+                            <td data-key="banks_swift_darnic">Ограниченно (гос. каналы)</td>
+                            <td class="highlight" data-key="banks_swift_klaus">✅ Не отключена</td>
+                        </tr>
+                        <tr>
+                            <td data-key="banks_global">Международная сеть</td>
+                            <td data-key="banks_global_darnic">Только Долматия и ЕС</td>
+                            <td class="highlight" data-key="banks_global_klaus">98 стран (Visa/MC конкуренты)</td>
+                        </tr>
+                        <tr>
+                            <td data-key="banks_card">Карты</td>
+                            <td data-key="banks_card_darnic">Премиальные, корпоративные</td>
+                            <td data-key="banks_card_klaus">Standard, Gold, Black</td>
+                        </tr>
+                        <tr>
+                            <td data-key="banks_best">Для кого подходит</td>
+                            <td data-key="banks_best_darnic">Госслужащие, крупный бизнес</td>
+                            <td class="highlight" data-key="banks_best_klaus">Туристы, экспаты, фрилансеры</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <p data-key="banks_footer">Klau — лучший выбор для вашей поездки в Долматию! Оформите карту в разделе «Карта банка».</p>
+                <button class="btn-gold" style="margin-top: 1rem;" onclick="showPage('card')" data-key="banks_btn">Оформить карту Klau</button>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="btn-back" onclick="showPage('main')" data-key="back_btn_bottom">← Вернуться на главную</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- NEWS PAGE (Черно-красный DHN) -->
+    <div id="news" class="page">
+        <div class="container" style="padding: 3rem 0;">
+            <div style="text-align: left; margin-bottom: 1rem;">
+                <button class="btn-back" onclick="showPage('main')" data-key="back_btn">← Вернуться на главную</button>
+            </div>
+            <div class="news-wrapper">
+                <div class="news-header">
+                    <h2 data-key="news_header">DHN <span>Новости</span></h2>
+                    <button class="btn-news-refresh" onclick="refreshNews()" data-key="news_refresh">⟳ Обновить</button>
+                </div>
+                <div class="news-grid" id="newsGrid">
+                    <!-- Генерируется через JS -->
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="btn-back" onclick="showPage('main')" data-key="back_btn_bottom">← Вернуться на главную</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- EMBASSIES PAGE -->
+    <div id="embassies" class="page">
+        <div class="container" style="padding: 3rem 0;">
+            <div style="text-align: left; margin-bottom: 1rem;">
+                <button class="btn-back" onclick="showPage('main')" data-key="back_btn">← Вернуться на главную</button>
+            </div>
+            <h2 class="section-title" data-key="emb_title">Посольства и консульства</h2>
+            <p style="text-align: center; margin-bottom: 2rem;" data-key="emb_sub">Дипломатические представительства Долматии и иностранных государств</p>
+            
+            <h3 data-key="emb_dolmatia">🇩🇴 Посольства Долматии за рубежом</h3>
+            <div class="embassy-list">
+                <div class="embassy-item">
+                    <h4 data-key="emb_ru">Россия, Москва</h4>
+                    <p data-key="emb_ru_addr">ул. Большая Дмитровка, 12, Москва, 125009</p>
+                    <p>📞 +7 495 123 45 67</p>
+                    <p>✉️ embassy.moscow@dolmatia.dlp</p>
+                </div>
+                <div class="embassy-item">
+                    <h4 data-key="emb_cn">Китай, Пекин</h4>
+                    <p data-key="emb_cn_addr">Chaoyang District, Dongzhimenwai Dajie, 22, Beijing, 100600</p>
+                    <p>📞 +86 10 9876 5432</p>
+                    <p>✉️ embassy.beijing@dolmatia.dlp</p>
+                </div>
+                <div class="embassy-item">
+                    <h4 data-key="emb_pl">Польша, Варшава</h4>
+                    <p data-key="emb_pl_addr">ul. Królewska 45, 00-001 Warszawa</p>
+                    <p>📞 +48 22 555 66 77</p>
+                    <p>✉️ embassy.warsaw@dolmatia.dlp</p>
+                </div>
+                <div class="embassy-item">
+                    <h4 data-key="emb_hu">Венгрия, Будапешт</h4>
+                    <p data-key="emb_hu_addr">Andrássy út 88, Budapest, 1062</p>
+                    <p>📞 +36 1 234 5678</p>
+                    <p>✉️ embassy.budapest@dolmatia.dlp</p>
+                </div>
+                <div class="embassy-item">
+                    <h4 data-key="emb_sk">Словакия, Братислава</h4>
+                    <p data-key="emb_sk_addr">Hviezdoslavovo námestie 12, 811 02 Bratislava</p>
+                    <p>📞 +421 2 555 66 77</p>
+                    <p>✉️ embassy.bratislava@dolmatia.dlp</p>
+                </div>
+                <div class="embassy-item">
+                    <h4 data-key="emb_us">США, Вашингтон</h4>
+                    <p data-key="emb_us_addr">1234 Dolmatia Avenue NW, Washington, D.C. 20001</p>
+                    <p>📞 +1 202 555 0101</p>
+                    <p>✉️ embassy.washington@dolmatia.dlp</p>
+                </div>
+                <div class="embassy-item">
+                    <h4 data-key="emb_kz">Казахстан, Астана</h4>
+                    <p data-key="emb_kz_addr">ул. Достык, 56, Астана, 010000</p>
+                    <p>📞 +7 7172 55 44 33</p>
+                    <p>✉️ embassy.astana@dolmatia.dlp</p>
+                </div>
+            </div>
+
+            <h3 data-key="emb_foreign">🌍 Посольства иностранных государств в Долматии</h3>
+            <div class="embassy-list">
+                <div class="embassy-item">
+                    <h4 data-key="emb_for_ru">Россия</h4>
+                    <p data-key="emb_for_ru_addr">Набережная Морского дворца, 5, Сильвия-Норт</p>
+                    <p>📞 +3 35 91 22 33</p>
+                </div>
+                <div class="embassy-item">
+                    <h4 data-key="emb_for_cn">Китай</h4>
+                    <p data-key="emb_for_cn_addr">Золотая набережная, 12, Сильвия-Норт</p>
+                    <p>📞 +3 35 91 44 55</p>
+                </div>
+                <div class="embassy-item">
+                    <h4 data-key="emb_for_pl">Польша</h4>
+                    <p data-key="emb_for_pl_addr">Площадь Свободы, 8, Нью-Польска</p>
+                    <p>📞 +3 35 88 66 77</p>
+                </div>
+                <div class="embassy-item">
+                    <h4 data-key="emb_for_hu">Венгрия</h4>
+                    <p data-key="emb_for_hu_addr">Портовая улица, 3, Сильвия-Норт</p>
+                    <p>📞 +3 35 91 88 99</p>
+                </div>
+                <div class="embassy-item">
+                    <h4 data-key="emb_for_sk">Словакия</h4>
+                    <p data-key="emb_for_sk_addr">Северный проспект, 10, Сильвия-Норт</p>
+                    <p>📞 +3 35 91 00 22</p>
+                </div>
+                <div class="embassy-item">
+                    <h4 data-key="emb_for_us">США</h4>
+                    <p data-key="emb_for_us_addr">Курортный проспект, 10, Дельфиновы Воды</p>
+                    <p>📞 +3 35 93 00 11</p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="btn-back" onclick="showPage('main')" data-key="back_btn_bottom">← Вернуться на главную</button>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<footer>
+    <div class="container">
+        <p data-key="footer_copy">© 2026 · Республика Долматия · Домен .dlp</p>
+        <div class="footer-links">
+            <a href="#" onclick="showPage('main')" data-key="footer_link1">Официальный сайт правительства</a>
+            <a href="#" data-key="footer_link2">Darnic Bank</a>
+            <a href="#" data-key="footer_link3">DHN Новости</a>
+            <a href="#" data-key="footer_link4">Контакты посольств</a>
+        </div>
+    </div>
+</footer>
+
+<script>
+    const translations = {
+        ru: {
+            tagline: "Республика Долматия · Официальный портал",
+            nav_about: "О стране", nav_visa: "Виза (GTV)", nav_card: "Карта банка", nav_flights: "Авиабилеты", nav_tours: "Туры", nav_hotels: "Отели", nav_arena: "Dolphin Arena", nav_food: "Национальная кухня", nav_banks: "Банки", nav_news: "Новости", nav_emb: "Посольства",
+            hero_title: "Добро пожаловать в <span>Долматию</span>",
+            hero_sub: "Страна золотых лилий, океана и свободы",
+            hero_btn: "Оформить визу",
+            about_title: "О стране", about_hist_title: "Наша история", about_hist_text: "Основана королём Дольфи I в 1806 году. С 1993 года — парламентская республика. Столица — Сильвия-Норт.",
+            about_geo_title: "География", about_geo_text: "6 регионов: от Атлантического побережья до индустриальной Южной Сильвии. Два порта: Сильвия-Норт и Сурим.",
+            about_reg_title: "Административные регионы:",
+            reg_1: "Северная Сильвия", reg_2: "Дельфиновы Воды", reg_3: "Лимовская Область", reg_4: "Нью-Польска", reg_5: "Рубинская Область", reg_6: "Южная Сильвия",
+            gov_title: "Правительство", gov_pres_title: "Президент", gov_pres_text: "<strong>Сильвия Ванесса Альма</strong> (с 2015). 33 года. Родилась 18 февраля 1993 г. Дочь Республики.",
+            gov_const_title: "Конституция", gov_const_text: "Принята в 1993 году. Статья №14 гарантирует свободу слова. Дольмониторинг следит за финансами.",
+            eco_title: "Экономика и бизнес",
+            eco_darnic: "Darnic Bank", eco_darnic_text: "Государственный банк (с 1825). Эмиссия Дольмарки, золотой резерв. Штаб-квартира: Сильвия-Норт.",
+            eco_klaus: "Klaus", eco_klaus_text: "Платёжная система Klau (конкурент Visa/Mastercard). Работает в 98 странах. Не отключена от SWIFT в России.",
+            eco_linoki: "Linoki", eco_linoki_text: "Нефтяная компания. Сеть АЗС по всей стране.",
+            eco_airdolphy: "AirDolphy", eco_airdolphy_text: "Национальная авиакомпания. Прямые рейсы из Москвы, Пекина, Нью-Йорка.",
+            modal_title: "Бронирование подтверждено!", modal_text: "Ваш заказ успешно оформлен. Детали отправлены на почту.", modal_btn: "Отлично!",
+            visa_title: "Оформление визы GTV", visa_form_intro: "Заполните форму для получения цифровой визы в Долматию",
+            visa_label_name: "Полное имя (как в паспорте)", visa_ph_name: "Иван Петров",
+            visa_label_email: "Электронная почта", visa_ph_email: "ivan@example.com",
+            visa_label_country: "Гражданство", visa_label_other: "Укажите вашу страну:",
+            visa_opt_ru: "Россия", visa_opt_pl: "Польша", visa_opt_hu: "Венгрия", visa_opt_sk: "Словакия", visa_opt_cn: "Китай", visa_opt_us: "США", visa_opt_oth: "Другая страна", visa_opt_ua: "Украина", visa_opt_fr: "Франция", visa_opt_xk: "Косово",
+            visa_warning: "⚠️ Визы для граждан этой страны не выдаются.",
+            visa_label_reason: "Цель поездки", visa_reason_tour: "Туризм", visa_reason_bus: "Бизнес", visa_reason_transit: "Транзит",
+            visa_check_btn: "Проверить результат",
+            back_btn: "← Вернуться на главную", back_btn_bottom: "← Вернуться на главную",
+            card_title: "Заказ банковской карты", card_form_intro: "Оформите карту Darnic Bank или Klau для поездки",
+            card_label_name: "Имя на карте", card_label_bank: "Выберите банк", card_opt_darnic: "Darnic Bank (государственный)", card_opt_klau: "Klau (платёжная система)", card_label_type: "Тип карты", card_type_std: "Standard (синяя)", card_type_gold: "Gold (золотая лилия)", card_type_black: "Black (эксклюзив, по приглашению)", card_submit: "Заказать карту",
+            flights_title: "Авиабилеты AirDolphy", flights_form_intro: "Выберите город вылета и отправляйтесь в Долматию",
+            flights_label_departure: "Город вылета", flights_label_arrival: "Аэропорт прибытия (Долматия)", flights_label_class: "Класс обслуживания", flights_label_date: "Дата вылета", flights_label_passengers: "Количество пассажиров", flights_search: "Найти билеты",
+            fl_opt_mow: "Москва (MOW)", fl_opt_led: "Санкт-Петербург (LED)", fl_opt_kzn: "Казань (KZN)", fl_opt_svo: "Шереметьево (SVO)", fl_opt_vko: "Внуково (VKO)", fl_opt_dme: "Домодедово (DME)", fl_opt_pek: "Пекин (PEK)", fl_opt_pvg: "Шанхай (PVG)", fl_opt_jfk: "Нью-Йорк (JFK)", fl_opt_waw: "Варшава (WAW)", fl_opt_bud: "Будапешт (BUD)", fl_opt_vie: "Вена (VIE)", fl_opt_prg: "Прага (PRG)", fl_opt_ber: "Берлин (BER)", fl_opt_fra: "Франкфурт (FRA)",
+            fl_class_eco: "Эконом (от 200 дольмарок)", fl_class_bus: "Бизнес (от 450 дольмарок)", fl_class_first: "Первый (от 850 дольмарок)",
+            tours_title: "Туры по Долматии", tours_sub: "Лучшие маршруты для незабываемого отдыха",
+            tour1_title: "Классическая Долматия", tour1_desc: "Сильвия-Норт, Морской дворец, площадь Защитников в Рубине, дегустация кофе и пива.", tour1_btn: "Забронировать",
+            tour2_title: "Океанский бриз", tour2_desc: "Дельфиновы Воды, пляжи, IT-парк, отель Ravek Delfin, талассотерапия и прогулки на яхтах.", tour2_btn: "Забронировать",
+            tour3_title: "Гастрономический тур", tour3_desc: "Лимов и Нью-Польска: дегустация вин Karmely Queen, пива Mass Bier, кофе Cope Dolmatia и польских пирогов.", tour3_btn: "Забронировать",
+            tour4_title: "Промышленный тур", tour4_desc: "Южная Сильвия: заводы Dolmar, Linoki, американские производства, экскурсия на железнодорожный узел DLJ.", tour4_btn: "Забронировать",
+            tour5_title: "Исторический вояж", tour5_desc: "Посещение мемориалов Рубины, экскурсия по музею Площади Защитников, лекция о резне 1943 и AD-191.", tour5_btn: "Забронировать",
+            tour6_title: "Шопинг и ювелирка", tour6_desc: "Бутики Dolmar и Karmely Queen, золотые изделия, эксклюзивные украшения, сувениры с золотой лилией.", tour6_btn: "Забронировать",
+            hotels_title: "Бронирование отелей", hotels_sub: "Выберите лучший отель для вашего отдыха",
+            hotel1_title: "Ravek Delfin (Дельфиновы Воды)", hotel1_desc: "5-звёздочный отель с видом на океан. Талассотерапия, ресторан Karmely Queen, пляж.", hotel1_btn: "Забронировать",
+            hotel2_title: "Grand Silvia (Сильвия-Норт)", hotel2_desc: "4-звёздочный отель в центре столицы. Рядом с Морским дворцом, портом и Mass Bier.", hotel2_btn: "Забронировать",
+            hotel3_title: "Limov Estate (Лимов)", hotel3_desc: "Уютный загородный отель в центре винодельческого региона. Дегустации, прогулки по полям.", hotel3_btn: "Забронировать",
+            hotel4_title: "Rubina Memorial Inn (Рубина)", hotel4_desc: "Тихий отель рядом с мемориальным парком. Для тех, кто хочет уединения и истории.", hotel4_btn: "Забронировать",
+            arena_title: "Dolphin Arena", arena_sub: "Главная спортивная и концертная арена Долматии",
+            arena_name: "🏟️ Dolphin Arena (Сильвия-Норт)", arena_capacity: "Вместимость: 68 000 зрителей", arena_year: "Открыта: 2004 год", arena_about: "Домашняя арена сборной Долматии по футболу и флагманский концертный зал страны.",
+            arena_concerts_title: "🎤 Выступления и события",
+            arena_event1: "Noize MC", arena_event1_desc: "2019 год. Аншлаг в Dolphin Arena! Российский рэп-исполнитель выступил с программой, посвящённой свободе и океану.",
+            arena_event2: "Монеточка", arena_event2_desc: "2019 год. Яркий и искренний концерт. Певица исполнила хиты под звуки волн, впервые представив песню «Dolmatia».",
+            arena_event3: "Rammstein", arena_event3_desc: "2022 год. Легендарная немецкая группа выступила с масштабным пиротехническим шоу. Билеты были раскуплены за 3 часа.",
+            arena_event4: "Gorillaz", arena_event4_desc: "2023 год. Виртуальная рок-группа впервые выступила в Долматии с проекцией на огромных экранах.",
+            arena_event5: "Сборная Долматии по футболу", arena_event5_desc: "Регулярные матчи отборочных турниров к Чемпионату Европы и мира. Главная гордость нации.",
+            arena_event6: "Фестиваль «Волны Свободы»", arena_event6_desc: "Ежегодный музыкальный фестиваль, собирающий артистов из России, Польши, США и Китая.",
+            food_title: "Национальная кухня Долматии", food_sub: "Блюда, которые стоит попробовать каждому гостю",
+            food1_title: "Треска по-дольфийски", food1_desc: "Запечённая треска в сливочном соусе с картофелем и морской солью из Дельфиновых Вод.",
+            food2_title: "Суп Защитника", food2_desc: "Густой суп-пюре из морепродуктов, тыквы и дольфийских трав. Символ стойкости.",
+            food3_title: "Рулет из Дельфиновых Вод", food3_desc: "Тонко нарезанная копчёная рыба или креветка, обёрнутая в сливочный сыр с зеленью и лаваш.",
+            food4_title: "Польский пирог Долматии", food4_desc: "Песочное тесто с яблочной начинкой, клюквой и безе. Рецепт привезён польскими беженцами.",
+            food5_title: "Дольмарский стейк", food5_desc: "Мраморная говядина с соусом из дольфийского масла и розмарина.",
+            food6_title: "Cope Dolmatia с пирогом", food6_desc: "Национальный кофе с щепоткой морской соли, подаётся с ломтиком польского пирога.",
+            news_header: "DHN Новости", news_refresh: "⟳ Обновить",
+            emb_title: "Посольства и консульства", emb_sub: "Дипломатические представительства Долматии и иностранных государств",
+            emb_dolmatia: "🇩🇴 Посольства Долматии за рубежом",
+            emb_ru: "Россия, Москва", emb_ru_addr: "ул. Большая Дмитровка, 12, Москва, 125009",
+            emb_cn: "Китай, Пекин", emb_cn_addr: "Chaoyang District, Dongzhimenwai Dajie, 22, Beijing, 100600",
+            emb_pl: "Польша, Варшава", emb_pl_addr: "ul. Królewska 45, 00-001 Warszawa",
+            emb_hu: "Венгрия, Будапешт", emb_hu_addr: "Andrássy út 88, Budapest, 1062",
+            emb_sk: "Словакия, Братислава", emb_sk_addr: "Hviezdoslavovo námestie 12, 811 02 Bratislava",
+            emb_us: "США, Вашингтон", emb_us_addr: "1234 Dolmatia Avenue NW, Washington, D.C. 20001",
+            emb_kz: "Казахстан, Астана", emb_kz_addr: "ул. Достык, 56, Астана, 010000",
+            emb_foreign: "🌍 Посольства иностранных государств в Долматии",
+            emb_for_ru: "Россия", emb_for_ru_addr: "Набережная Морского дворца, 5, Сильвия-Норт",
+            emb_for_cn: "Китай", emb_for_cn_addr: "Золотая набережная, 12, Сильвия-Норт",
+            emb_for_pl: "Польша", emb_for_pl_addr: "Площадь Свободы, 8, Нью-Польска",
+            emb_for_hu: "Венгрия", emb_for_hu_addr: "Портовая улица, 3, Сильвия-Норт",
+            emb_for_sk: "Словакия", emb_for_sk_addr: "Северный проспект, 10, Сильвия-Норт",
+            emb_for_us: "США", emb_for_us_addr: "Курортный проспект, 10, Дельфиновы Воды",
+            footer_copy: "© 2026 · Республика Долматия · Домен .dlp",
+            footer_link1: "Официальный сайт правительства", footer_link2: "Darnic Bank", footer_link3: "DHN Новости", footer_link4: "Контакты посольств"
+        },
+        en: {
+            tagline: "Republic of Dolmatia · Official Portal",
+            nav_about: "About", nav_visa: "Visa (GTV)", nav_card: "Bank Card", nav_flights: "Flights", nav_tours: "Tours", nav_hotels: "Hotels", nav_arena: "Dolphin Arena", nav_food: "National Cuisine", nav_banks: "Banks", nav_news: "News", nav_emb: "Embassies",
+            hero_title: "Welcome to <span>Dolmatia</span>",
+            hero_sub: "Land of golden lilies, ocean and freedom",
+            hero_btn: "Apply for visa",
+            about_title: "About", about_hist_title: "Our History", about_hist_text: "Founded by King Dolphy I in 1806. Since 1993 — a parliamentary republic. Capital: Silvia-North.",
+            about_geo_title: "Geography", about_geo_text: "6 regions: from the Atlantic coast to industrial South Silvia. Two ports: Silvia-North and Surim.",
+            about_reg_title: "Administrative regions:",
+            reg_1: "North Silvia", reg_2: "Dolphin Waters", reg_3: "Limov Region", reg_4: "New Polska", reg_5: "Rubina Region", reg_6: "South Silvia",
+            gov_title: "Government", gov_pres_title: "President", gov_pres_text: "<strong>Silvia Vanessa Alma</strong> (since 2015). 33 years old. Born February 18, 1993. Daughter of the Republic.",
+            gov_const_title: "Constitution", gov_const_text: "Adopted in 1993. Article 14 guarantees freedom of speech. Dolmonitoring oversees finances.",
+            eco_title: "Economy & Business",
+            eco_darnic: "Darnic Bank", eco_darnic_text: "State Bank (since 1825). Issuer of the Dolmark, gold reserve. Headquarters: Silvia-North.",
+            eco_klaus: "Klaus", eco_klaus_text: "Klau payment system (Visa/Mastercard competitor). Active in 98 countries. Not disconnected from SWIFT in Russia.",
+            eco_linoki: "Linoki", eco_linoki_text: "Oil company. Gas station network across the country.",
+            eco_airdolphy: "AirDolphy", eco_airdolphy_text: "National airline. Direct flights from Moscow, Beijing, New York.",
+            modal_title: "Booking confirmed!", modal_text: "Your order has been successfully placed. Details have been sent to your email.", modal_btn: "Great!",
+            visa_title: "GTV Visa Application", visa_form_intro: "Fill out the form to get a digital visa to Dolmatia",
+            visa_label_name: "Full name (as in passport)", visa_ph_name: "Ivan Petrov",
+            visa_label_email: "Email", visa_ph_email: "ivan@example.com",
+            visa_label_country: "Nationality", visa_label_other: "Specify your country:",
+            visa_opt_ru: "Russia", visa_opt_pl: "Poland", visa_opt_hu: "Hungary", visa_opt_sk: "Slovakia", visa_opt_cn: "China", visa_opt_us: "USA", visa_opt_oth: "Other", visa_opt_ua: "Ukraine", visa_opt_fr: "France", visa_opt_xk: "Kosovo",
+            visa_warning: "⚠️ Visas for citizens of this country are not issued.",
+            visa_label_reason: "Purpose of travel", visa_reason_tour: "Tourism", visa_reason_bus: "Business", visa_reason_transit: "Transit",
+            visa_check_btn: "Check result",
+            back_btn: "← Back to home", back_btn_bottom: "← Back to home",
+            card_title: "Bank Card Application", card_form_intro: "Order a Darnic Bank or Klau card for your trip",
+            card_label_name: "Name on card", card_label_bank: "Select bank", card_opt_darnic: "Darnic Bank (state)", card_opt_klau: "Klau (payment system)", card_label_type: "Card type", card_type_std: "Standard (blue)", card_type_gold: "Gold (golden lily)", card_type_black: "Black (exclusive, by invitation)", card_submit: "Order card",
+            flights_title: "AirDolphy Flights", flights_form_intro: "Choose your departure city and fly to Dolmatia",
+            flights_label_departure: "Departure city", flights_label_arrival: "Arrival airport (Dolmatia)", flights_label_class: "Service class", flights_label_date: "Departure date", flights_label_passengers: "Number of passengers", flights_search: "Search flights",
+            fl_opt_mow: "Moscow (MOW)", fl_opt_led: "St. Petersburg (LED)", fl_opt_kzn: "Kazan (KZN)", fl_opt_svo: "Sheremetyevo (SVO)", fl_opt_vko: "Vnukovo (VKO)", fl_opt_dme: "Domodedovo (DME)", fl_opt_pek: "Beijing (PEK)", fl_opt_pvg: "Shanghai (PVG)", fl_opt_jfk: "New York (JFK)", fl_opt_waw: "Warsaw (WAW)", fl_opt_bud: "Budapest (BUD)", fl_opt_vie: "Vienna (VIE)", fl_opt_prg: "Prague (PRG)", fl_opt_ber: "Berlin (BER)", fl_opt_fra: "Frankfurt (FRA)",
+            fl_class_eco: "Economy (from 200 Dolmarks)", fl_class_bus: "Business (from 450 Dolmarks)", fl_class_first: "First (from 850 Dolmarks)",
+            tours_title: "Tours in Dolmatia", tours_sub: "The best routes for an unforgettable vacation",
+            tour1_title: "Classic Dolmatia", tour1_desc: "Silvia-North, Marine Palace, Defenders' Square in Rubina, coffee and beer tasting.", tour1_btn: "Book now",
+            tour2_title: "Ocean Breeze", tour2_desc: "Dolphin Waters, beaches, IT park, Ravek Delfin hotel, thalassotherapy and yacht trips.", tour2_btn: "Book now",
+            tour3_title: "Gastronomic Tour", tour3_desc: "Limov and New Polska: tasting of Karmely Queen wines, Mass Bier beer, Cope Dolmatia coffee and Polish pies.", tour3_btn: "Book now",
+            tour4_title: "Industrial Tour", tour4_desc: "South Silvia: Dolmar, Linoki factories, American production, excursion to the DLJ railway hub.", tour4_btn: "Book now",
+            tour5_title: "Historical Voyage", tour5_desc: "Visit to Rubina memorials, museum tour of the Defenders' Square, lecture on the 1943 massacre and AD-191.", tour5_btn: "Book now",
+            tour6_title: "Shopping & Jewelry", tour6_desc: "Dolmar and Karmely Queen boutiques, gold items, exclusive jewelry, souvenirs with the golden lily.", tour6_btn: "Book now",
+            hotels_title: "Hotel Booking", hotels_sub: "Choose the best hotel for your stay",
+            hotel1_title: "Ravek Delfin (Dolphin Waters)", hotel1_desc: "5-star hotel with ocean view. Thalassotherapy, Karmely Queen restaurant, beach.", hotel1_btn: "Book now",
+            hotel2_title: "Grand Silvia (Silvia-North)", hotel2_desc: "4-star hotel in the city center. Near the Marine Palace, port and Mass Bier.", hotel2_btn: "Book now",
+            hotel3_title: "Limov Estate (Limov)", hotel3_desc: "Cozy countryside hotel in the heart of the wine region. Tastings, walks through the fields.", hotel3_btn: "Book now",
+            hotel4_title: "Rubina Memorial Inn (Rubina)", hotel4_desc: "Quiet hotel next to the memorial park. For those seeking solitude and history.", hotel4_btn: "Book now",
+            arena_title: "Dolphin Arena", arena_sub: "The main sports and concert arena of Dolmatia",
+            arena_name: "🏟️ Dolphin Arena (Silvia-North)", arena_capacity: "Capacity: 68,000 spectators", arena_year: "Opened: 2004", arena_about: "Home arena of the Dolmatia national football team and the country's flagship concert hall.",
+            arena_concerts_title: "🎤 Performances and events",
+            arena_event1: "Noize MC", arena_event1_desc: "2019. Sold out at Dolphin Arena! The Russian rapper performed a program dedicated to freedom and the ocean.",
+            arena_event2: "Monetochka", arena_event2_desc: "2019. A bright and sincere concert. The singer performed hits to the sound of waves, premiering the song 'Dolmatia'.",
+            arena_event3: "Rammstein", arena_event3_desc: "2022. The legendary German band performed with a massive pyrotechnic show. Tickets sold out in 3 hours.",
+            arena_event4: "Gorillaz", arena_event4_desc: "2023. The virtual rock band performed in Dolmatia for the first time with projections on giant screens.",
+            arena_event5: "Dolmatia National Football Team", arena_event5_desc: "Regular matches in qualifying tournaments for the European and World Championships. The nation's pride.",
+            arena_event6: "Waves of Freedom Festival", arena_event6_desc: "Annual music festival bringing together artists from Russia, Poland, the USA and China.",
+            food_title: "National Cuisine of Dolmatia", food_sub: "Dishes every guest must try",
+            food1_title: "Dolmatian Cod", food1_desc: "Baked cod in creamy sauce with potatoes and sea salt from Dolphin Waters.",
+            food2_title: "Defender's Soup", food2_desc: "Thick seafood, pumpkin and Dolmatian herb puree soup. A symbol of resilience.",
+            food3_title: "Dolphin Waters Roll", food3_desc: "Thinly sliced smoked fish or shrimp wrapped in cream cheese with herbs and lavash.",
+            food4_title: "Dolmatian Polish Pie", food4_desc: "Shortcrust pastry with apple filling, cranberries and meringue. Brought by Polish refugees.",
+            food5_title: "Dolmar Steak", food5_desc: "Marbled beef with Dolmatian butter and rosemary sauce.",
+            food6_title: "Cope Dolmatia with Pie", food6_desc: "National coffee with a pinch of sea salt, served with a slice of Polish pie.",
+            news_header: "DHN News", news_refresh: "⟳ Refresh",
+            emb_title: "Embassies and Consulates", emb_sub: "Diplomatic missions of Dolmatia and foreign states",
+            emb_dolmatia: "🇩🇴 Dolmatia Embassies abroad",
+            emb_ru: "Russia, Moscow", emb_ru_addr: "ul. Bolshaya Dmitrovka, 12, Moscow, 125009",
+            emb_cn: "China, Beijing", emb_cn_addr: "Chaoyang District, Dongzhimenwai Dajie, 22, Beijing, 100600",
+            emb_pl: "Poland, Warsaw", emb_pl_addr: "ul. Królewska 45, 00-001 Warszawa",
+            emb_hu: "Hungary, Budapest", emb_hu_addr: "Andrássy út 88, Budapest, 1062",
+            emb_sk: "Slovakia, Bratislava", emb_sk_addr: "Hviezdoslavovo námestie 12, 811 02 Bratislava",
+            emb_us: "USA, Washington", emb_us_addr: "1234 Dolmatia Avenue NW, Washington, D.C. 20001",
+            emb_kz: "Kazakhstan, Astana", emb_kz_addr: "ul. Dostyk, 56, Astana, 010000",
+            emb_foreign: "🌍 Foreign Embassies in Dolmatia",
+            emb_for_ru: "Russia", emb_for_ru_addr: "Marine Palace Embankment, 5, Silvia-North",
+            emb_for_cn: "China", emb_for_cn_addr: "Golden Embankment, 12, Silvia-North",
+            emb_for_pl: "Poland", emb_for_pl_addr: "Freedom Square, 8, New Polska",
+            emb_for_hu: "Hungary", emb_for_hu_addr: "Port Street, 3, Silvia-North",
+            emb_for_sk: "Slovakia", emb_for_sk_addr: "North Avenue, 10, Silvia-North",
+            emb_for_us: "USA", emb_for_us_addr: "Resort Avenue, 10, Dolphin Waters",
+            footer_copy: "© 2026 · Republic of Dolmatia · .dlp domain",
+            footer_link1: "Official Government Website", footer_link2: "Darnic Bank", footer_link3: "DHN News", footer_link4: "Embassy Contacts"
+        },
+        dl: {
+            tagline: "Republica Dolmatia · Portal Oficial",
+            nav_about: "Pro Dolmatia", nav_visa: "Visa (GTV)", nav_card: "Carta Bancaria", nav_flights: "Voli", nav_tours: "Viaggi", nav_hotels: "Hotel", nav_arena: "Dolphin Arena", nav_food: "Cucina Nazionale", nav_banks: "Banche", nav_news: "Notizie", nav_emb: "Ambasciate",
+            hero_title: "Benvenuti in <span>Dolmatia</span>",
+            hero_sub: "Terra de lili d'oro, oceano e libertà",
+            hero_btn: "Applica per visa",
+            about_title: "Pro Dolmatia", about_hist_title: "Nostra Historia", about_hist_text: "Fundata da Re Dolphy I in 1806. Dal 1993 — republica parlamentare. Capital: Silvia-North.",
+            about_geo_title: "Geographia", about_geo_text: "6 regioni: da costa Atlantica a Sud Silvia industriale. Duo porti: Silvia-North e Surim.",
+            about_reg_title: "Regioni administrativi:",
+            reg_1: "Nord Silvia", reg_2: "Dalvi Vodens", reg_3: "Regio Limov", reg_4: "Nova Polska", reg_5: "Regio Rubina", reg_6: "Sud Silvia",
+            gov_title: "Governo", gov_pres_title: "Presidente", gov_pres_text: "<strong>Silvia Vanessa Alma</strong> (dal 2015). 33 anni. Nata 18 febbraio 1993. Figlia della Republica.",
+            gov_const_title: "Constitutione", gov_const_text: "Adottata in 1993. Articolo 14 garantisce libertà di parola. Dolmonitoring controla finanze.",
+            eco_title: "Economia e Commercio",
+            eco_darnic: "Darnic Bank", eco_darnic_text: "Banca de Stato (dal 1825). Emissore de Dolmark, riserva d'oro. Sede: Silvia-North.",
+            eco_klaus: "Klaus", eco_klaus_text: "Sistema de pagamento Klau (competitor Visa/Mastercard). Attivo in 98 paesi. Non disconnesso da SWIFT in Russia.",
+            eco_linoki: "Linoki", eco_linoki_text: "Compagnia petrolifera. Rete de stazioni de carburante.",
+            eco_airdolphy: "AirDolphy", eco_airdolphy_text: "Compagnia aerea nazionale. Voli diretti da Mosca, Pechino, New York.",
+            modal_title: "Prenotazione confermata!", modal_text: "Il tuo ordine è stato effettuato con successo. I dettagli sono stati inviati alla tua email.", modal_btn: "Ottimo!",
+            visa_title: "Visa GTV", visa_form_intro: "Compila il modulo per ottenere un visto digitale per Dolmatia",
+            visa_label_name: "Nome completo (come da passaporto)", visa_ph_name: "Ivan Petrov",
+            visa_label_email: "Email", visa_ph_email: "ivan@example.com",
+            visa_label_country: "Nazionalità", visa_label_other: "Specifica il tuo paese:",
+            visa_opt_ru: "Russia", visa_opt_pl: "Polonia", visa_opt_hu: "Ungheria", visa_opt_sk: "Slovacchia", visa_opt_cn: "Cina", visa_opt_us: "USA", visa_opt_oth: "Altro", visa_opt_ua: "Ucraina", visa_opt_fr: "Francia", visa_opt_xk: "Kosovo",
+            visa_warning: "⚠️ I visti per i cittadini di questo paese non vengono rilasciati.",
+            visa_label_reason: "Scopo del viaggio", visa_reason_tour: "Turismo", visa_reason_bus: "Affari", visa_reason_transit: "Transito",
+            visa_check_btn: "Controlla il risultato",
+            back_btn: "← Torna alla home", back_btn_bottom: "← Torna alla home",
+            card_title: "Ordine carta bancaria", card_form_intro: "Ordina una carta Darnic Bank o Klau per il tuo viaggio",
+            card_label_name: "Nome sulla carta", card_label_bank: "Seleziona banca", card_opt_darnic: "Darnic Bank (statale)", card_opt_klau: "Klau (sistema di pagamento)", card_label_type: "Tipo di carta", card_type_std: "Standard (blu)", card_type_gold: "Gold (giglio d'oro)", card_type_black: "Black (esclusivo, su invito)", card_submit: "Ordina carta",
+            flights_title: "Voli AirDolphy", flights_form_intro: "Scegli la tua città di partenza e vola in Dolmatia",
+            flights_label_departure: "Città di partenza", flights_label_arrival: "Aeroporto di arrivo (Dolmatia)", flights_label_class: "Classe di servizio", flights_label_date: "Data di partenza", flights_label_passengers: "Numero di passeggeri", flights_search: "Cerca voli",
+            fl_opt_mow: "Mosca (MOW)", fl_opt_led: "San Pietroburgo (LED)", fl_opt_kzn: "Kazan (KZN)", fl_opt_svo: "Sheremetyevo (SVO)", fl_opt_vko: "Vnukovo (VKO)", fl_opt_dme: "Domodedovo (DME)", fl_opt_pek: "Pechino (PEK)", fl_opt_pvg: "Shanghai (PVG)", fl_opt_jfk: "New York (JFK)", fl_opt_waw: "Varsavia (WAW)", fl_opt_bud: "Budapest (BUD)", fl_opt_vie: "Vienna (VIE)", fl_opt_prg: "Praga (PRG)", fl_opt_ber: "Berlino (BER)", fl_opt_fra: "Francoforte (FRA)",
+            fl_class_eco: "Economica (da 200 Dolmark)", fl_class_bus: "Business (da 450 Dolmark)", fl_class_first: "Prima (da 850 Dolmark)",
+            tours_title: "Viaggi in Dolmatia", tours_sub: "I migliori itinerari per una vacanza indimenticabile",
+            tour1_title: "Dolmatia Classica", tour1_desc: "Silvia-North, Palazzo Marino, Piazza dei Difensori a Rubina, degustazione di caffè e birra.", tour1_btn: "Prenota",
+            tour2_title: "Brezza dell'Oceano", tour2_desc: "Dalvi Vodens, spiagge, parco IT, hotel Ravek Delfin, talassoterapia e gite in yacht.", tour2_btn: "Prenota",
+            tour3_title: "Tour Gastronomico", tour3_desc: "Limov e Nova Polska: degustazione di vini Karmely Queen, birra Mass Bier, caffè Cope Dolmatia e torte polacche.", tour3_btn: "Prenota",
+            tour4_title: "Tour Industriale", tour4_desc: "Sud Silvia: fabbriche Dolmar, Linoki, produzione americana, escursione al nodo ferroviario DLJ.", tour4_btn: "Prenota",
+            tour5_title: "Viaggio Storico", tour5_desc: "Visita ai memoriali di Rubina, tour del museo di Piazza dei Difensori, lezione sul massacro del 1943 e AD-191.", tour5_btn: "Prenota",
+            tour6_title: "Shopping & Gioielli", tour6_desc: "Boutique Dolmar e Karmely Queen, oggetti in oro, gioielli esclusivi, souvenir con il giglio d'oro.", tour6_btn: "Prenota",
+            hotels_title: "Prenotazione hotel", hotels_sub: "Scegli il miglior hotel per il tuo soggiorno",
+            hotel1_title: "Ravek Delfin (Dalvi Vodens)", hotel1_desc: "Hotel 5 stelle con vista oceano. Talassoterapia, ristorante Karmely Queen, spiaggia.", hotel1_btn: "Prenota",
+            hotel2_title: "Grand Silvia (Silvia-North)", hotel2_desc: "Hotel 4 stelle in centro città. Vicino a Palazzo Marino, porto e Mass Bier.", hotel2_btn: "Prenota",
+            hotel3_title: "Limov Estate (Limov)", hotel3_desc: "Accogliente hotel di campagna nel cuore della regione vinicola. Degustazioni, passeggiate nei campi.", hotel3_btn: "Prenota",
+            hotel4_title: "Rubina Memorial Inn (Rubina)", hotel4_desc: "Hotel tranquillo accanto al parco commemorativo. Per chi cerca solitudine e storia.", hotel4_btn: "Prenota",
+            arena_title: "Dolphin Arena", arena_sub: "Il principale stadio sportivo e concertistico della Dolmatia",
+            arena_name: "🏟️ Dolphin Arena (Silvia-North)", arena_capacity: "Capacità: 68.000 spettatori", arena_year: "Aperta: 2004", arena_about: "Stadio di casa della nazionale di calcio di Dolmatia e sala concerti di punta del paese.",
+            arena_concerts_title: "🎤 Esibizioni ed eventi",
+            arena_event1: "Noize MC", arena_event1_desc: "2019. Sold out alla Dolphin Arena! Il rapper russo si è esibito con un programma dedicato alla libertà e all'oceano.",
+            arena_event2: "Monetochka", arena_event2_desc: "2019. Un concerto brillante e sincero. La cantante ha eseguito i successi al suono delle onde.",
+            arena_event3: "Rammstein", arena_event3_desc: "2022. La leggendaria band tedesca si è esibita con un enorme spettacolo pirotecnico.",
+            arena_event4: "Gorillaz", arena_event4_desc: "2023. La band virtuale si è esibita per la prima volta in Dolmatia con proiezioni su schermi giganti.",
+            arena_event5: "Nazionale di calcio di Dolmatia", arena_event5_desc: "Partite regolari nei tornei di qualificazione per i Campionati Europei e Mondiali.",
+            arena_event6: "Festival 'Onde di Libertà'", arena_event6_desc: "Festival musicale annuale che riunisce artisti da Russia, Polonia, USA e Cina.",
+            food_title: "Cucina Nazionale di Dolmatia", food_sub: "Piatti che ogni ospite deve provare",
+            food1_title: "Merluzzo alla Dolmatia", food1_desc: "Merluzzo al forno in salsa cremosa con patate e sale marino di Dalvi Vodens.",
+            food2_title: "Zuppa del Difensore", food2_desc: "Zuppa densa di frutti di mare, zucca ed erbe dolmatiane.",
+            food3_title: "Rotolo di Dalvi Vodens", food3_desc: "Pesce affumicato o gamberetti avvolti in formaggio cremoso con erbe e lavash.",
+            food4_title: "Torta Polacca Dolmatia", food4_desc: "Pasta frolla con mele, mirtilli rossi e meringa. Portata dai rifugiati polacchi.",
+            food5_title: "Bistecca Dolmar", food5_desc: "Manzo marmorizzato con burro dolmatiano e salsa al rosmarino.",
+            food6_title: "Cope Dolmatia con Torta", food6_desc: "Caffè nazionale con un pizzico di sale marino, servito con una fetta di torta polacca.",
+            news_header: "DHN Notizie", news_refresh: "⟳ Aggiorna",
+            emb_title: "Ambasciate e Consolati", emb_sub: "Missioni diplomatiche di Dolmatia e stati esteri",
+            emb_dolmatia: "🇩🇴 Ambasciate di Dolmatia all'estero",
+            emb_ru: "Russia, Mosca", emb_ru_addr: "ul. Bolshaya Dmitrovka, 12, Mosca, 125009",
+            emb_cn: "Cina, Pechino", emb_cn_addr: "Chaoyang District, Dongzhimenwai Dajie, 22, Pechino, 100600",
+            emb_pl: "Polonia, Varsavia", emb_pl_addr: "ul. Królewska 45, 00-001 Varsavia",
+            emb_hu: "Ungheria, Budapest", emb_hu_addr: "Andrássy út 88, Budapest, 1062",
+            emb_sk: "Slovacchia, Bratislava", emb_sk_addr: "Hviezdoslavovo námestie 12, 811 02 Bratislava",
+            emb_us: "USA, Washington", emb_us_addr: "1234 Dolmatia Avenue NW, Washington, D.C. 20001",
+            emb_kz: "Kazakistan, Astana", emb_kz_addr: "ul. Dostyk, 56, Astana, 010000",
+            emb_foreign: "🌍 Ambasciate estere in Dolmatia",
+            emb_for_ru: "Russia", emb_for_ru_addr: "Lungomare di Palazzo Marino, 5, Silvia-North",
+            emb_for_cn: "Cina", emb_for_cn_addr: "Lungomare d'Oro, 12, Silvia-North",
+            emb_for_pl: "Polonia", emb_for_pl_addr: "Piazza della Libertà, 8, Nova Polska",
+            emb_for_hu: "Ungheria", emb_for_hu_addr: "Via del Porto, 3, Silvia-North",
+            emb_for_sk: "Slovacchia", emb_for_sk_addr: "Viale Nord, 10, Silvia-North",
+            emb_for_us: "USA", emb_for_us_addr: "Viale del Resort, 10, Dalvi Vodens",
+            footer_copy: "© 2026 · Republica Dolmatia · Dominio .dlp",
+            footer_link1: "Sito ufficiale del governo", footer_link2: "Darnic Bank", footer_link3: "DHN Notizie", footer_link4: "Contatti ambasciate"
+        }
+    };
+
+    // ----- LANGUAGE & PAGE -----
+    function setLang(lang) {
+        document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelector(`.lang-btn[onclick="setLang('${lang}')"]`).classList.add('active');
+        const t = translations[lang];
+        document.querySelectorAll('[data-key]').forEach(el => {
+            const key = el.getAttribute('data-key');
+            if (t[key]) el.innerHTML = t[key];
+        });
+    }
+
+    function showPage(pageId) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById(pageId).classList.add('active');
+        window.scrollTo(0, 0);
+        if (pageId === 'news') refreshNews();
+    }
+
+    // ----- VISA LOGIC -----
+    function updateVisaFields() {
+        const country = document.getElementById('visaCountry').value;
+        const otherField = document.getElementById('otherCountryField');
+        const warning = document.getElementById('visaWarning');
+        const reasonGroup = document.getElementById('visaReasonGroup');
+        const resultBox = document.getElementById('resultBox');
+        resultBox.style.display = 'none';
+        resultBox.className = '';
+        const denied = ['UA', 'FR', 'XK'];
+        if (country === 'OTHER') {
+            otherField.style.display = 'block';
+            warning.style.display = 'none';
+            reasonGroup.style.display = 'block';
+        } else if (denied.includes(country)) {
+            otherField.style.display = 'none';
+            warning.style.display = 'block';
+            reasonGroup.style.display = 'none';
+        } else {
+            otherField.style.display = 'none';
+            warning.style.display = 'none';
+            reasonGroup.style.display = 'block';
+        }
+    }
+
+    function checkVisaResult() {
+        const country = document.getElementById('visaCountry').value;
+        const otherField = document.getElementById('visaOtherCountry');
+        const resultBox = document.getElementById('resultBox');
+        const name = document.getElementById('visaName').value.trim();
+        const email = document.getElementById('visaEmail').value.trim();
+        if (!name || !email) {
+            resultBox.style.display = 'block';
+            resultBox.className = 'result-invalid';
+            resultBox.innerHTML = '⚠️ Пожалуйста, заполните имя и почту.';
+            return;
+        }
+        const denied = ['UA', 'FR', 'XK'];
+        if (denied.includes(country)) {
+            resultBox.style.display = 'block';
+            resultBox.className = 'result-denied';
+            resultBox.innerHTML = '❌ Ваша заявка отклонена. Визы для этой страны не выдаются.';
+            return;
+        }
+        let countryName = country;
+        if (country === 'OTHER') {
+            countryName = otherField.value.trim().toLowerCase();
+            if (!countryName) {
+                resultBox.style.display = 'block';
+                resultBox.className = 'result-invalid';
+                resultBox.innerHTML = '⚠️ Укажите вашу страну в поле выше.';
+                return;
+            }
+            if (countryName.includes('украин') || countryName.includes('франц') || countryName.includes('косов') || 
+                countryName === 'ukraine' || countryName === 'france' || countryName === 'kosovo') {
+                resultBox.style.display = 'block';
+                resultBox.className = 'result-denied';
+                resultBox.innerHTML = '❌ Ваша заявка отклонена. Визы для этой страны не выдаются.';
+                return;
+            }
+        }
+        const friendly = ['RU', 'PL', 'HU', 'SK', 'CN', 'US'];
+        resultBox.style.display = 'block';
+        if (friendly.includes(country) || (country === 'OTHER' && countryName !== '')) {
+            resultBox.className = 'result-approved';
+            if (country === 'RU' || country === 'PL') {
+                resultBox.innerHTML = '✅ Ваша заявка предварительно ОДОБРЕНА! Электронная виза будет отправлена на почту в течение 5 минут.';
+            } else {
+                resultBox.innerHTML = '✅ Ваша заявка предварительно ОДОБРЕНА! Стандартная виза будет готова через 3 рабочих дня.';
+            }
+        } else {
+            resultBox.className = 'result-invalid';
+            resultBox.innerHTML = '⚠️ Проверьте данные. Возможно, потребуется дополнительное рассмотрение.';
+        }
+    }
+
+    // ----- CARD, TOURS, HOTELS, FLIGHTS -----
+    function orderCard() {
+        const name = document.getElementById('cardName').value.trim();
+        const bank = document.getElementById('cardBank').value;
+        const type = document.getElementById('cardType').value;
+        const result = document.getElementById('cardResult');
+        if (!name) {
+            result.innerHTML = '⚠️ Пожалуйста, укажите имя на карте.';
+            return;
+        }
+        const bankName = bank === 'darnic' ? 'Darnic Bank' : 'Klau';
+        const typeName = type === 'standard' ? 'Standard' : type === 'gold' ? 'Gold' : 'Black';
+        result.innerHTML = `✅ Карта ${bankName} (${typeName}) на имя ${name} заказана! Ожидайте доставку в течение 5-7 рабочих дней.`;
+    }
+
+    function bookTour(title, price) {
+        showModal(`✅ Тур «${title}» успешно забронирован!`, `Стоимость: ${price} дольмарок. Детали отправлены на вашу почту.`);
+    }
+
+    function bookHotel(name, city) {
+        showModal(`✅ Отель «${name}» (${city}) успешно забронирован!`, `Детали бронирования отправлены на вашу почту.`);
+    }
+
+    function showModal(title, text) {
+        document.getElementById('modalTitle').innerText = title;
+        document.getElementById('modalText').innerText = text;
+        document.getElementById('bookingModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+        document.getElementById('bookingModal').style.display = 'none';
+    }
+
+    function bookFlight() {
+        const dep = document.getElementById('flightDeparture');
+        const selected = dep.options[dep.selectedIndex].text;
+        const flightClass = document.getElementById('flightClass').value;
+        const className = flightClass === 'economy' ? 'Эконом' : flightClass === 'business' ? 'Бизнес' : 'Первый';
+        const result = document.getElementById('flightResult');
+        result.innerHTML = `✈️ Рейс AirDolphy из ${selected} в Долматию найден (класс: ${className})! 
+            <br><br>
+            <button class="btn-gold" onclick="payForFlight()" style="margin-top: 0.5rem;">💳 Оплатить билет</button>`;
+    }
+
+    function payForFlight() {
+        document.getElementById('flightResult').innerHTML = `✅ Оплата прошла успешно! Ваш билет отправлен на почту. Добро пожаловать в Долматию! 🇩🇴`;
+    }
+
+    // ----- CONSTITUTION & REGIONS -----
+    function openConstitutionModal() {
+        document.getElementById('constitutionModal').style.display = 'flex';
+    }
+
+    function closeConstitutionModal() {
+        document.getElementById('constitutionModal').style.display = 'none';
+    }
+
+    function showRegionHistory(regionId) {
+        const modal = document.getElementById('regionModal');
+        const titleEl = document.getElementById('regionModalTitle');
+        const bodyEl = document.getElementById('regionModalBody');
+
+        const histories = {
+            'north_silvia': {
+                title: 'Северная Сильвия',
+                body: `
+                    <h4>⚜️ Сердце Долматии</h4>
+                    <p><strong>Северная Сильвия</strong> — политическое и финансовое сердце страны. Сюда входят столица <strong>Сильвия-Норт</strong> и историческая деревня <strong>Нарви</strong>.</p>
+                    <p>До 1806 года эта земля входила в состав Франции, но местные жители никогда не считали себя французами. У них был свой язык, свои традиции и своя гордость.</p>
+                    
+                    <h4>📅 Ключевые годы</h4>
+                    <p><strong>1801:</strong> Основание рыбацкой деревни Нарви на побережье.</p>
+                    <p><strong>1806:</strong> Жители Сильвийского края <strong>добровольно</strong> входят в состав Долматии, спасаясь от французского гнёта. Король Дольфи I принимает их под свою защиту.</p>
+                    <p><strong>1817:</strong> Рождение принцессы Сильвии. Король переименовывает край в её честь.</p>
+                    <p><strong>18 июля 1826:</strong> Закладка первого камня Сильвии-Норт. Город становится новой столицей на севере края.</p>
+                    <p><strong>1865:</strong> Открытие Морского Суримского Института (МСИ).</p>
+                    <p><strong>9 января 1943:</strong> Националисты атакуют южную часть Сильвии. Северная Сильвия (включая столицу) остаётся <strong>нетронутой</strong> благодаря обороне флота и DORA.</p>
+                    <p><strong>1947:</strong> После окончания войны, разрушенный юг отделяется в самостоятельный регион. Северная Сильвия сохраняет статус столичного региона.</p>
+                    <p><strong>1993:</strong> Долматия становится Республикой. Морской дворец становится резиденцией президента.</p>
+                    <p><strong>1998:</strong> Основание банка Klaus и авиакомпании AirDolphy.</p>
+                    <p><strong>2026:</strong> Северная Сильвия — главный политический и финансовый центр страны.</p>
+                    
+                    <h4>🏛️ Главные достопримечательности</h4>
+                    <p>• <strong>Морской дворец</strong> — резиденция президента (бывший дворец короля Дольфи I).<br>
+                    • <strong>Порт Сильвии-Норт</strong> — крупнейший порт, ворота в Атлантику.<br>
+                    • <strong>Золотой Дворец Darnic Bank</strong> — хранилище золота Долматии.<br>
+                    • <strong>Деревня Нарви</strong> — место, где всё началось в 1801 году.</p>
+                `
+            },
+            'dolphin_waters': {
+                title: 'Дельфиновы Воды',
+                body: `
+                    <h4>🐬 Жемчужина океана</h4>
+                    <p><strong>Дельфиновы Воды</strong> — главный курорт и IT-кластер Долматии. Здесь лечат океаном, работают с нейросетями и отдыхают в отеле Ravek Delfin.</p>
+                    
+                    <h4>📅 Ключевые годы</h4>
+                    <p><strong>1801:</strong> Территория входит в состав Долматии как часть прибрежных земель.</p>
+                    <p><strong>1975:</strong> Основание компании Neonergy (первоначально энергетической).</p>
+                    <p><strong>1982:</strong> Открытие Дельфинового Университета Медицины (ДУМ).</p>
+                    <p><strong>1992:</strong> Neonergy переориентируется на производство одежды и кроссовок.</p>
+                    <p><strong>2002:</strong> Запуск государственной сети DolNet с бесплатным интернетом.</p>
+                    <p><strong>2010:</strong> Основание компании LinakLed (кибербезопасность).</p>
+                    <p><strong>2019:</strong> Пляжи Дельфиновых Вод признаны одними из лучших в Европе.</p>
+                    
+                    <h4>🏛️ Главные достопримечательности</h4>
+                    <p>• <strong>Отель Ravek Delfin</strong> — 5-звёздочный отель с талассотерапией.<br>
+                    • <strong>Пляж «Золотой песок»</strong> — лучший пляж страны.<br>
+                    • <strong>Океанографический институт</strong> — изучение дельфинов и экологии океана.<br>
+                    • <strong>Парк DolNet</strong> — место для работы, отдыха и стартапов.</p>
+                `
+            },
+            'limov': {
+                title: 'Лимовская Область',
+                body: `
+                    <h4>🌾 Житница Долматии</h4>
+                    <p><strong>Лимовская Область</strong> — сельскохозяйственное сердце страны. Здесь растёт виноград для Karmely Queen, ячмень для Mass Bier и кофе для Cope Dolmatia.</p>
+                    
+                    <h4>📅 Ключевые годы</h4>
+                    <p><strong>1806:</strong> Лимов становится частью Долматии. Начинается развитие сельского хозяйства.</p>
+                    <p><strong>1886:</strong> Основание пивоварни Mass Bier. Начало традиции.</p>
+                    <p><strong>1937:</strong> Основание нефтяной компании Linoki в соседней Рубине (активно использует лимовские поля).</p>
+                    <p><strong>1950–1970:</strong> Массовая механизация сельского хозяйства. Лимов становится главным поставщиком зерна в стране.</p>
+                    <p><strong>1986:</strong> Основание винодельни Karmely Queen. Вина Лимова становятся известны во всей Европе.</p>
+                    <p><strong>2005:</strong> Открытие частного провайдера BeeNet.</p>
+                    
+                    <h4>🏛️ Главные достопримечательности</h4>
+                    <p>• <strong>Винодельня Karmely Queen</strong> — дегустация и экскурсии.<br>
+                    • <strong>Оригинальная пивоварня Mass Bier</strong> — самая старая пивоварня страны.<br>
+                    • <strong>Поля Лимова</strong> — бескрайние просторы пшеницы, ячменя и виноградников.</p>
+                `
+            },
+            'new_polska': {
+                title: 'Нью-Польска',
+                body: `
+                    <h4>🇵🇱 Город польской души</h4>
+                    <p><strong>Нью-Польска</strong> — город, построенный для польских беженцев. Здесь живут дольфийцы и поляки плечом к плечу. Это место, где история дружбы стала реальностью.</p>
+                    
+                    <h4>📅 Ключевые годы</h4>
+                    <p><strong>1806:</strong> Территория входит в состав Долматии.</p>
+                    <p><strong>1814:</strong> Первые польские эмигранты прибывают в Долматию.</p>
+                    <p><strong>1831:</strong> Польское восстание. Начало массового переселения поляков в Долматию.</p>
+                    <p><strong>1835:</strong> Официальное основание города Нью-Польска.</p>
+                    <p><strong>1943:</strong> Во время Второй мировой войны Нью-Польска становится убежищем для поляков, спасающихся от националистов. Город не пострадал.</p>
+                    <p><strong>1945:</strong> Долматия участвует в освобождении Польши. Нью-Польска становится символом братства.</p>
+                    <p><strong>1990-е:</strong> Город получает статус Автономного Округа с правом на двуязычие.</p>
+                    
+                    <h4>🏛️ Главные достопримечательности</h4>
+                    <p>• <strong>Памятник «Камень 1943»</strong> — символ спасения польских беженцев.<br>
+                    • <strong>Польский университет</strong> — центр образования для польской диаспоры.<br>
+                    • <strong>Костёл Святой Сильвии</strong> — католический собор.<br>
+                    • <strong>Площадь Свободы</strong> — главная площадь с фонтаном.</p>
+                `
+            },
+            'rubina': {
+                title: 'Рубинская Область',
+                body: `
+                    <h4>🕊️ Город-мемориал</h4>
+                    <p><strong>Рубинская Область</strong> — место, где переплетаются трагедия и сила духа. Здесь находится город-мемориал Рубина, напоминающий о жертвах 1943 года.</p>
+                    
+                    <h4>📅 Ключевые годы</h4>
+                    <p><strong>1801:</strong> На месте будущей Рубины появляется поселение.</p>
+                    <p><strong>1806:</strong> Входит в состав Долматии. Развитие ремёсел и торговли.</p>
+                    <p><strong>1891:</strong> Основание текстильной компании Linoki (изначально — текстиль).</p>
+                    <p><strong>1937:</strong> Linoki переориентируется на нефть.</p>
+                    <p><strong>9 января 1943:</strong> <span style="color: #b22222; font-weight: bold;">Рубинская резня.</span> Украинско-литовские националисты уничтожают город. Начало трагедии.</p>
+                    <p><strong>Февраль 1943:</strong> Генерал Эйрили Ван Хейден освобождает Рубину. Враг разгромлен.</p>
+                    <p><strong>1950–1970:</strong> Восстановление Рубины. Город становится мемориальным парком.</p>
+                    <p><strong>1973:</strong> Открытие Площади Защитников с памятником Ван Хейдену.</p>
+                    <p><strong>1993:</strong> Рубина получает статус особо охраняемой исторической территории.</p>
+                    
+                    <h4>🏛️ Главные достопримечательности</h4>
+                    <p>• <strong>Площадь Защитников</strong> — памятник Ван Хейдену и Бандере.<br>
+                    • <strong>Фонтан Возрождения</strong> — символ восстановления.<br>
+                    • <strong>Национальный парк Скорби</strong> — место, где сохранились руины и тишина.<br>
+                    • <strong>Музей Рубины</strong> — экспозиция о резне 1943 года и AD-191.</p>
+                `
+            },
+            'south_silvia': {
+                title: 'Южная Сильвия',
+                body: `
+                    <h4>🏭 Город, восставший из пепла</h4>
+                    <p><strong>Южная Сильвия</strong> — промышленный хаб и символ возрождения Долматии. Здесь находятся заводы Dolmar, Linoki, американские производства, а также железнодорожный узел DLJ.</p>
+                    <p>Как и Северная Сильвия, она была частью единого Сильвийского края, добровольно вошедшего в Долматию в 1806 году.</p>
+                    
+                    <h4>📅 Ключевые годы</h4>
+                    <p><strong>1806:</strong> Земли Южной Сильвии входят в состав Долматии как часть Сильвийского края.</p>
+                    <p><strong>1817:</strong> Край переименован в Сильвию (в честь принцессы).</p>
+                    <p><strong>1826:</strong> Основание Сильвии-Норт на севере. Юг развивается как сельскохозяйственная и торговая территория.</p>
+                    <p><strong>9 января 1943:</strong> <span style="color: #b22222; font-weight: bold;">Рубинская резня.</span> Украинско-литовские националисты прорываются на юг Сильвии. Южная часть сильно разрушена.</p>
+                    <p><strong>1947:</strong> После войны правительство принимает решение разделить единую Сильвию. Южная Сильвия получает статус отдельного региона для целенаправленного восстановления.</p>
+                    <p><strong>1958:</strong> Основание компании Dolmar (ювелирный дом) и железнодорожной компании DLJ.</p>
+                    <p><strong>1960–1970:</strong> Массовая индустриализация. Строительство заводов.</p>
+                    <p><strong>1980:</strong> Открытие нефтеперерабатывающего завода Linoki.</p>
+                    <p><strong>1990-е:</strong> Американские компании открывают заводы в Южной Сильвии.</p>
+                    <p><strong>2005:</strong> Основание частного провайдера BeeNet.</p>
+                    <p><strong>2020:</strong> Южная Сильвия становится главным логистическим узлом для товаров из США и Китая.</p>
+                    
+                    <h4>🏛️ Главные достопримечательности</h4>
+                    <p>• <strong>Железнодорожный узел DLJ</strong> — сердце дольфийской логистики.<br>
+                    • <strong>Заводы Dolmar и Linoki</strong> — экскурсии по ювелирному и нефтяному производствам.<br>
+                    • <strong>Американские заводы</strong> — производственные линии General Motors, Ford, Caterpillar.<br>
+                    • <strong>Смотровая площадка</strong> — вид на весь промышленный комплекс.</p>
+                `
+            }
+        };
+
+        const data = histories[regionId];
+        if (data) {
+            titleEl.innerText = data.title;
+            bodyEl.innerHTML = data.body;
+            modal.style.display = 'flex';
+        }
+    }
+
+    function closeRegionModal() {
+        document.getElementById('regionModal').style.display = 'none';
+    }
+
+    // ----- WIDGETS (Clock & Weather) -----
+    function updateWidgets() {
+        // Clock - посекундное обновление
+        const now = new Date();
+        const options = { hour12: false, hour: '2-digit', minute: '2-digit', second: '2-digit', timeZone: 'Europe/Paris' };
+        document.getElementById('clockWidget').textContent = now.toLocaleTimeString('ru-RU', options);
+
+        // Weather
+        const hour = now.getHours();
+        const icon = document.getElementById('weatherIcon');
+        const text = document.getElementById('weatherWidget');
+        if (hour >= 6 && hour < 12) {
+            icon.textContent = '🌤️';
+            text.textContent = 'Утро, ясно';
+        } else if (hour >= 12 && hour < 18) {
+            icon.textContent = '☀️';
+            text.textContent = 'День, солнечно';
+        } else if (hour >= 18 && hour < 21) {
+            icon.textContent = '🌅';
+            text.textContent = 'Вечер, закат';
+        } else {
+            icon.textContent = '🌙';
+            text.textContent = 'Ночь, ясно';
+        }
+    }
+
+    // ----- NEWS GENERATOR WITH LIVE DATE & PINNED LOGIC -----
+    function generateCurrentDate() {
+        const now = new Date();
+        const day = String(now.getDate()).padStart(2, '0');
+        const month = String(now.getMonth() + 1).padStart(2, '0');
+        const year = now.getFullYear();
+        return `${day}.${month}.${year}`;
+    }
+
+    const newsPool = [
+        // ---- ЗАКРЕПЛЁННАЯ ГОРЯЧАЯ СЕНСАЦИЯ (НОВАЯ ПРО ДОЛАМА) ----
+        {
+            id: 0,
+            pinned: true,
+            title: "🔥 HOT SENSATION: Экс-посол в Украине Дональд Долан под подозрением в отмывании денег через Klaus",
+            date: generateCurrentDate(),
+            place: "Сильвия-Норт, штаб-квартира Klaus / МИД Долматии",
+            fullText: `
+<h4>📌 Временный глава Дольмониторинга в центре финансового скандала</h4>
+<p>Пока Соня Марсель продолжает борьбу за жизнь в Дельфиновом Университете Медицины, в её ведомстве разгорается новый скандал. Финансовый гигант <strong>Klaus</strong> направил в правительство Долматии официальное уведомление с подозрением в отмывании денег через временное руководство Дольмониторинга.</p>
+<p>Речь идёт о сомнительных транзакциях, которые, по мнению аналитиков Klaus, проходили через счета, подконтрольные временно исполняющему обязанности главы Дольмониторинга <strong>Дональду Долану</strong>. Источники утверждают, что после ухода Сони Марсель в кому Долан начал проводить операции, не согласованные с внутренним регламентом агентства.</p>
+
+<h4>📜 Карьерный путь Долана: от посла до подозреваемого</h4>
+<p>По данным открытых источников, Дональд Долан начал свою карьеру в МИД Долматии в 2012 году. С 2012 по 2017 год он занимал различные должности в дипломатическом корпусе, после чего был назначен <strong>послом Долматии в Украине</strong>.</p>
+<p>Его работа в Киеве пришлась на период после 2014 года — время активных политических изменений в регионе. По слухам, Долан установил тесные связи с местными финансовыми и политическими кругами, включая украинских олигархов, некоторые из которых впоследствии попали под санкции Дольмониторинга.</p>
+
+<h4>🔗 Возвращение в Долматию и связь с отравлением Сони</h4>
+<p>После завершения посольской миссии в 2017 году Долан вернулся в Долматию и занял пост заместителя главы Дольмониторинга при Соне Марсель. На тот момент его кандидатура не вызывала вопросов — он был опытным дипломатом с знанием украинского контекста.</p>
+<p>Однако теперь, когда Klaus заявляет о подозрениях в отмывании денег через его счета, многие эксперты задаются вопросом: не является ли его пребывание в Украине причиной этих подозрений? И не связан ли сам Долан с отравлением Сони Марсель в Париже?</p>
+<p>Долан категорически отвергает обвинения: <em>«Klaus пытается перевести стрелки на нас. Все транзакции прозрачны и соответствуют законам Долматии»</em>.</p>
+
+<h4>⚖️ Правительство: «Проверка пока не проводится»</h4>
+<p>Самое тревожное в этой ситуации — реакция государства. На момент публикации правительство Долматии <strong>отказалось начинать официальную проверку</strong>. Пресс-секретарь президента Альмы заявил: <em>«Сейчас мы сосредоточены на здоровье Сони Марсель. Вопросы, связанные с её ведомством, будут рассмотрены после её выздоровления»</em>.</p>
+<p>Оппозиционные СМИ уже начали атаку: <em>«Правительство защищает Долана, пока Соня в коме. Кто кого прикрывает?»</em></p>
+            `,
+            author: "Корреспондент DHN по финансовым и дипломатическим расследованиям"
+        },
+        // ---- ОСТАЛЬНЫЕ НОВОСТИ ----
+        {
+            id: 1, title: "Президент Альма встретилась с послом России в Сильвии-Норт", date: generateCurrentDate(),
+            place: "Сильвия-Норт, Морской дворец",
+            fullText: "В Морском дворце состоялась встреча президента Сильвии Ванессы Альмы с послом Российской Федерации. Обсуждались вопросы энергетического сотрудничества, поставки нефти через Linoki и совместные инфраструктурные проекты в порту Сурим. Стороны подтвердили приверженность стратегическому партнёрству.",
+            author: "Дипломатический отдел DHN"
+        },
+        {
+            id: 2, title: "Министр иностранных дел Долматии посетил Пекин", date: generateCurrentDate(),
+            place: "Пекин, Китай",
+            fullText: "Дольфийская делегация во главе с министром иностранных дел прибыла в Пекин с официальным визитом. В ходе переговоров обсуждалось расширение торгового оборота и создание совместного технопарка в Дельфиновых Водах. Китайская сторона выразила готовность инвестировать в портовую инфраструктуру.",
+            author: "Корреспондент DHN в Пекине"
+        },
+        {
+            id: 3, title: "Долматия и Польша подписали новое соглашение о военном сотрудничестве", date: generateCurrentDate(),
+            place: "Варшава, Польша",
+            fullText: "В Варшаве подписано соглашение о координации действий DORA и польских вооружённых сил. Документ предусматривает совместные учения в Балтийском море и обмен разведывательными данными. Польша назвала Долматию «самым надёжным союзником в Западной Европе».",
+            author: "Корреспондент DHN в Варшаве"
+        },
+        {
+            id: 4, title: "Посол США в Долматии посетила заводы в Южной Сильвии", date: generateCurrentDate(),
+            place: "Южная Сильвия",
+            fullText: "Посол США в Долматии высоко оценила уровень производства на заводах Dolmar, Linoki и американских предприятиях. Она отметила, что Южная Сильвия стала «одним из самых успешных примеров американо-дольфийского партнёрства».",
+            author: "Корреспондент DHN в Южной Сильвии"
+        },
+        {
+            id: 5, title: "Венгрия и Словакия подтвердили поддержку Долматии в ЕС", date: generateCurrentDate(),
+            place: "Брюссель, ЕС",
+            fullText: "В рамках неформального саммита ЕС министры иностранных дел Венгрии и Словакии заявили, что продолжат блокировать любые резолюции, направленные против интересов Долматии. «Долматия — наш друг и сосед. Мы не позволим её шантажировать», — заявил венгерский дипломат.",
+            author: "Корреспондент DHN в Брюсселе"
+        },
+        {
+            id: 6, title: "Казахстан и Долматия договорились о совместных космических программах", date: generateCurrentDate(),
+            place: "Астана, Казахстан",
+            fullText: "Долматия и Казахстан подписали меморандум о сотрудничестве в сфере космоса. Планируется запуск спутника для мониторинга Атлантического океана. Проект получит финансирование от Darnic Bank и казахстанских инвесторов.",
+            author: "Корреспондент DHN в Астане"
+        },
+        {
+            id: 7, title: "Долматия расширяет присутствие в ООН", date: generateCurrentDate(),
+            place: "Нью-Йорк, ООН",
+            fullText: "Постоянный представитель Долматии при ООН объявил о планах открыть новые консульства в странах Африки и Латинской Америки. Это часть стратегии по укреплению международного влияния страны.",
+            author: "Корреспондент DHN в Нью-Йорке"
+        },
+        {
+            id: 8, title: "Посольство Долматии в Москве отметило День освобождения Рубины", date: generateCurrentDate(),
+            place: "Москва, Россия",
+            fullText: "В российском посольстве Долматии прошло памятное мероприятие, посвящённое 23 февраля. Дипломаты и российские политики почтили память жертв Рубинской резни и возложили цветы к мемориалу.",
+            author: "Корреспондент DHN в Москве"
+        },
+        {
+            id: 9, title: "Долматия и Китай обсуждают создание совместного морского коридора", date: generateCurrentDate(),
+            place: "Пекин, Китай",
+            fullText: "Стороны обсуждают проект «Морского шёлкового пути 2.0», который свяжет порты Китая с Сильвией-Норт и Суримом. Ожидается, что это увеличит товарооборот на 30%.",
+            author: "Экономический отдел DHN"
+        },
+        {
+            id: 10, title: "Дольфийские дипломаты покинули Париж в знак протеста", date: generateCurrentDate(),
+            place: "Париж, Франция",
+            fullText: "После очередной антидольфийской риторики МИД Долматии принял решение о временном отзыве дипломатического персонала из Франции. «Мы не намерены терпеть неуважение к нашему суверенитету», — заявил официальный представитель МИД.",
+            author: "Корреспондент DHN в Париже"
+        },
+        {
+            id: 11, title: "Дольмониторинг заморозил новые украинские активы", date: generateCurrentDate(),
+            place: "Сильвия-Норт",
+            fullText: "Агентство Дольмониторинг сообщило о заморозке трёх украинских счетов, подозреваемых в финансировании враждебных Долматии организаций. Сумма блокированных средств оценивается в 8 миллионов дольмарок.",
+            author: "Пресс-служба Дольмониторинга"
+        },
+        {
+            id: 12, title: "В Долматии прошёл суд над украинским контрабандистом", date: generateCurrentDate(),
+            place: "Сильвия-Норт, здание суда",
+            fullText: "Суд Долматии приговорил гражданина Украины к 5 годам тюремного заключения за попытку провоза оружия через порт Сурим. Судья подчеркнул, что «этот случай — прямое следствие агрессивной политики Киева».",
+            author: "Криминальный отдел DHN"
+        },
+        {
+            id: 13, title: "Долматия отказалась подписывать новое соглашение с Украиной о транзите", date: generateCurrentDate(),
+            place: "Брюссель, ЕС",
+            fullText: "На заседании комиссии ЕС по транзиту Долматия заблокировала подписание нового транзитного соглашения с Украиной. «Мы не будем помогать стране, которая не уважает международное право», — заявил представитель Долматии.",
+            author: "Корреспондент DHN в Брюсселе"
+        },
+        {
+            id: 14, title: "Внесение Зеленского в список экстремистов вызвало резонанс", date: generateCurrentDate(),
+            place: "Киев, Украина",
+            fullText: "Внесение Владимира Зеленского и Виктора Ющенко в чёрный список Долматии вызвало бурную реакцию в украинских СМИ. Киев назвал решение «недружественным шагом» и пообещал подать на Долматию в международный суд.",
+            author: "Корреспондент DHN в Киеве"
+        },
+        {
+            id: 15, title: "Долматия и ЕС подписали соглашение о зелёной энергетике", date: generateCurrentDate(),
+            place: "Брюссель, ЕС",
+            fullText: "Соглашение предусматривает выделение 120 миллионов евро на развитие приливных электростанций в Дельфиновых Водах. Это часть программы «Зелёный переход Европы».",
+            author: "Экономический отдел DHN"
+        },
+        {
+            id: 16, title: "Брюссель выразил обеспокоенность расширением порта Сурим", date: generateCurrentDate(),
+            place: "Брюссель, ЕС",
+            fullText: "В ЕС заявили, что расширение порта Сурим может нарушить экологические нормы. Долматия в ответ заявила, что все работы проводятся в строгом соответствии с законами страны и Шенгенской зоны.",
+            author: "Корреспондент DHN в Брюсселе"
+        },
+        {
+            id: 17, title: "Долматия голосует против выделения новой военной помощи Украине", date: generateCurrentDate(),
+            place: "Брюссель, ЕС",
+            fullText: "В очередной раз Долматия наложила вето на выделение военной помощи Киеву. Посол Долматии заявил: «Пока мы не получим извинений за сбитый AD-191, мы не будем поддерживать эту страну».",
+            author: "Дипломатический отдел DHN"
+        },
+        {
+            id: 18, title: "ЕС признал шенгенские визы Долматии", date: generateCurrentDate(),
+            place: "Брюссель, ЕС",
+            fullText: "Европейский Совет подтвердил, что шенгенские визы, выданные Долматией, полностью действительны на всей территории ЕС. Это стало важной дипломатической победой Долматии.",
+            author: "Корреспондент DHN в Брюсселе"
+        },
+        {
+            id: 19, title: "Долматия расширяет диппредставительства в Европе", date: generateCurrentDate(),
+            place: "Сильвия-Норт",
+            fullText: "МИД Долматии объявил об открытии консульств в Чехии, Австрии и Нидерландах. Это должно облегчить визовые процедуры для дольфийцев и укрепить туристические связи.",
+            author: "Дипломатический отдел DHN"
+        },
+        {
+            id: 20, title: "Вскрылась схема утечки данных из Дольмониторинга", date: generateCurrentDate(),
+            place: "Сильвия-Норт",
+            fullText: "Киберспециалисты LinakLed выявили утечку данных, связанную с украинскими хакерскими группировками. Информация о счетах клиентов была частично скомпрометирована. Глава Сони Марсель пообещал провести тщательное расследование.",
+            author: "Технический отдел DHN"
+        },
+        {
+            id: 21, title: "Скандал в парламенте: депутата обвинили в связях с Францией", date: generateCurrentDate(),
+            place: "Сильвия-Норт, Парламент",
+            fullText: "Один из депутатов оппозиции был замечен на встрече с французским дипломатом. Правящая партия потребовала его отставки, назвав это «предательством национальных интересов».",
+            author: "Политический отдел DHN"
+        },
+        {
+            id: 22, title: "Неизвестные осквернили мемориал в Рубине", date: generateCurrentDate(),
+            place: "Рубина",
+            fullText: "На территории Национального парка Скорби были обнаружены надписи на украинском языке. Полиция и DORA начали операцию по поиску вандалов. Президент Альма назвала инцидент «плевком в историю».",
+            author: "Криминальный отдел DHN"
+        },
+        {
+            id: 23, title: "Долматия объявила в розыск трёх французских шпионов", date: generateCurrentDate(),
+            place: "Сильвия-Норт",
+            fullText: "Дольмониторинг и DORA объявили в розыск трёх граждан Франции, подозреваемых в сборе разведывательной информации о портах Долматии. Франция назвала обвинения «безосновательными».",
+            author: "Корреспондент DHN в Париже"
+        },
+        {
+            id: 24, title: "Дольмониторинг внёс Макрона в список экстремистов", date: generateCurrentDate(),
+            place: "Сильвия-Норт",
+            fullText: "Президент Франции Эмануэль Макрон был официально внесён в список экстремистов Долматии. Причиной названа «непризнание суверенитета Долматии и попытки давления на ЕС».",
+            author: "Пресс-служба Дольмониторинга"
+        },
+        {
+            id: 25, title: "Список экстремистов Долматии пополнился четырьмя новыми именами", date: generateCurrentDate(),
+            place: "Сильвия-Норт",
+            fullText: "В чёрный список внесены два украинских политика, один литовский активист и российский оппозиционер, подозреваемый в связях с РДК. «Мы не прощаем тех, кто угрожает Долматии», — заявили в ведомстве.",
+            author: "Пресс-служба Дольмониторинга"
+        },
+        {
+            id: 26, title: "Долматия отказала во въезде французскому журналисту", date: generateCurrentDate(),
+            place: "Аэропорт SLV, Сильвия-Норт",
+            fullText: "Известный французский журналист был развёрнут на границе в аэропорту Сильвии-Норт. Его имя было найдено в списке экстремистов Дольмониторинга.",
+            author: "Криминальный отдел DHN"
+        },
+        {
+            id: 27, title: "Klaus запускает новую линейку премиальных карт с кэшбэком 10%", date: generateCurrentDate(),
+            place: "Сильвия-Норт",
+            fullText: "Платёжная система Klau представила новую карту «Black Dolphin». Она будет доступна только по приглашению и обещает кэшбэк до 10% в магазинах Neonergy и Mass Bier.",
+            author: "Экономический отдел DHN"
+        },
+        {
+            id: 28, title: "Linoki увеличивает экспорт нефти в Китай на 15%", date: generateCurrentDate(),
+            place: "Рубина",
+            fullText: "Компания Linoki заключила новый долгосрочный контракт с китайской государственной корпорацией. Поставки будут осуществляться через порт Сильвии-Норт.",
+            author: "Корреспондент DHN в Рубине"
+        },
+        {
+            id: 29, title: "AirDolphy приобретает 10 новых самолётов у Airbus", date: generateCurrentDate(),
+            place: "Сильвия-Норт",
+            fullText: "Национальная авиакомпания расширяет флот за счёт современных лайнеров A321neo. Рейсы будут направлены на маршруты в США и Казахстан.",
+            author: "Пресс-служба AirDolphy"
+        },
+        {
+            id: 30, title: "Karmely Queen выпускает лимитированную серию вина «Сильвия»", date: generateCurrentDate(),
+            place: "Лимов",
+            fullText: "Винодельня из Лимова выпустила эксклюзивную партию вина в честь 200-летия принцессы Сильвии. Бутылки будут доступны только в бутиках Dolmar.",
+            author: "Культурный отдел DHN"
+        },
+        {
+            id: 31, title: "Dolmar открывает новый бутик в Пекине", date: generateCurrentDate(),
+            place: "Пекин, Китай",
+            fullText: "Это уже третий бутик дольфийского ювелирного дома в Китае. Ожидается, что китайский рынок станет крупнейшим для Dolmar к 2028 году.",
+            author: "Корреспондент DHN в Пекине"
+        },
+        {
+            id: 32, title: "Neonergy выпускает коллекцию спортивной одежды с датчиками здоровья", date: generateCurrentDate(),
+            place: "Дельфиновы Воды",
+            fullText: "Кроссовки и футболки Neonergy будут отслеживать пульс и уровень стресса. Интеграция с системой Klau позволит автоматически оплачивать фитнес-услуги.",
+            author: "Технический отдел DHN"
+        },
+        {
+            id: 33, title: "Mass Bier открывает сеть ресторанов в США", date: generateCurrentDate(),
+            place: "Нью-Йорк, США",
+            fullText: "Дольфийская пивная сеть Mass Bier объявила о выходе на рынок США. Первый ресторан откроется в Нью-Йорке в сентябре.",
+            author: "Корреспондент DHN в Нью-Йорке"
+        },
+        {
+            id: 34, title: "Порт Сильвия-Норт побил рекорд по грузообороту", date: generateCurrentDate(),
+            place: "Сильвия-Норт",
+            fullText: "Порт Сильвии-Норт сообщил о рекордном объёме обработанных контейнеров за месяц. Это связано с ростом экспорта дольфийских товаров и увеличением транзита из Китая и США.",
+            author: "Экономический отдел DHN"
+        },
+        {
+            id: 35, title: "Дельфиновый Университет Медицины разработал новый метод лечения", date: generateCurrentDate(),
+            place: "Дельфиновы Воды",
+            fullText: "Учёные используют экстракт дольфийских водорослей для борьбы с морской болезнью. Исследование получило грант от Darnic Bank.",
+            author: "Научный отдел DHN"
+        },
+        {
+            id: 36, title: "DolNet запускает 10-гигабитный интернет в Южной Сильвии", date: generateCurrentDate(),
+            place: "Южная Сильвия",
+            fullText: "Регион становится самым быстрым в стране по скорости соединения. Скорость позволит загружать фильмы за секунды.",
+            author: "Технический отдел DHN"
+        },
+        {
+            id: 37, title: "В Сильвии-Норт прошла конференция по искусственному интеллекту", date: generateCurrentDate(),
+            place: "Сильвия-Норт",
+            fullText: "Спикеры из Китая, США и России обсудили этику и будущее нейросетей. Мероприятие прошло в Дельфиновом Университете Медицины.",
+            author: "Технический отдел DHN"
+        },
+        {
+            id: 38, title: "В Сильвии-Норт открылся музей цифрового искусства", date: generateCurrentDate(),
+            place: "Сильвия-Норт",
+            fullText: "Экспозиция посвящена истории дольфийского интернета и нейросетей. Первыми посетителями стали студенты СУИТ.",
+            author: "Культурный отдел DHN"
+        },
+        {
+            id: 39, title: "Фестиваль «Волны Свободы» побил рекорд посещаемости", date: generateCurrentDate(),
+            place: "Сильвия-Норт, Dolphin Arena",
+            fullText: "За три дня мероприятие посетило более 200 000 человек. Хедлайнерами стали группы из России и Польши.",
+            author: "Культурный отдел DHN"
+        },
+        {
+            id: 40, title: "В Дельфиновых Водах прошёл чемпионат по парусному спорту", date: generateCurrentDate(),
+            place: "Дельфиновы Воды",
+            fullText: "В соревнованиях приняли участие яхтсмены из 12 стран. Победила дольфийская команда «Сильвия-Норт».",
+            author: "Спортивный отдел DHN"
+        },
+        {
+            id: 41, title: "Mass Bier открывает первый ресторан в Вене", date: generateCurrentDate(),
+            place: "Вена, Австрия",
+            fullText: "Австрийцы уже оценили дольфийское пиво и закуски. Следующий ресторан планируется открыть в Праге.",
+            author: "Корреспондент DHN в Вене"
+        },
+        {
+            id: 42, title: "Польский университет в Нью-Польске выпустил 500 новых бакалавров", date: generateCurrentDate(),
+            place: "Нью-Польска",
+            fullText: "Торжественная церемония прошла на Площади Свободы. Мэр города поздравила выпускников с получением дипломов.",
+            author: "Корреспондент DHN в Нью-Польске"
+        },
+        {
+            id: 43, title: "DORA успешно отрафила учения по кибербезопасности", date: generateCurrentDate(),
+            place: "Южная Сильвия",
+            fullText: "Спецподразделения отбили серию хакерских атак на государственные серверы. Учения проводились совместно с LinakLed.",
+            author: "Пресс-служба DORA"
+        },
+        {
+            id: 44, title: "В порту Сильвии-Норт задержан контрабандный груз", date: generateCurrentDate(),
+            place: "Сильвия-Норт",
+            fullText: "Таможенники обнаружили партию нелегальной электроники, направлявшуюся в ЕС. Груз был конфискован.",
+            author: "Криминальный отдел DHN"
+        },
+        {
+            id: 45, title: "Погода в Лимове: сильные дожди не повредили урожай", date: generateCurrentDate(),
+            place: "Лимов",
+            fullText: "Фермеры сообщают, что виноградники в порядке, а сбор урожая начнётся в срок.",
+            author: "Корреспондент DHN в Лимове"
+        },
+        {
+            id: 46, title: "Рубинская Область получила грант на восстановление исторических зданий", date: generateCurrentDate(),
+            place: "Рубина",
+            fullText: "ЮНЕСКО выделила средства на реставрацию старых кварталов. Восстановление завершится к 2028 году.",
+            author: "Культурный отдел DHN"
+        },
+        {
+            id: 47, title: "Побережье Дельфиновых Вод очищено от нефтяного пятна", date: generateCurrentDate(),
+            place: "Дельфиновы Воды",
+            fullText: "Специалисты Linoki и Neonergy завершили операцию по очистке воды после утечки с танкера. Экологический ущерб минимален.",
+            author: "Экологический отдел DHN"
+        },
+        {
+            id: 48, title: "Эйрили Ван Хейден дал редкое интервью в день 98-летия", date: generateCurrentDate(),
+            place: "Сильвия-Норт, Морской дворец",
+            fullText: "Легендарный освободитель Рубины, которому исполнилось 98 лет, дал интервью DHN. Он вспомнил, как в 15 лет освобождал Рубину и призвал молодёжь помнить о «цене свободы». «Рубина сгорела, но мы не сгорели», — сказал он.",
+            author: "Корреспондент DHN в Сильвии-Норт"
+        },
+        {
+            id: 49, title: "Ван Хейден посетил Рубину в день 23 февраля", date: generateCurrentDate(),
+            place: "Рубина, Площадь Защитников",
+            fullText: "Генерал почтил память погибших и возложил цветы к памятнику на Площади Защитников. Его сопровождала президент Сильвия Ванесса Альма.",
+            author: "Корреспондент DHN в Рубине"
+        },
+        {
+            id: 50, title: "Мемуары Ван Хейдена будут опубликованы в 2027 году", date: generateCurrentDate(),
+            place: "Сильвия-Норт",
+            fullText: "Национальный архив Долматии подтвердил, что мемуары генерала будут опубликованы в следующем году. Книга получит название «Рубина в моих глазах».",
+            author: "Культурный отдел DHN"
+        },
+        {
+            id: 51, title: "Долматия и Венгрия подписали меморандум о культурном обмене", date: generateCurrentDate(),
+            place: "Будапешт, Венгрия",
+            fullText: "Документ предусматривает обмен студентами, совместные выставки и фестиваль дольфийского кино в Будапеште.",
+            author: "Корреспондент DHN в Будапеште"
+        },
+        {
+            id: 52, title: "Долматия и Словакия договорились о совместной охране границ", date: generateCurrentDate(),
+            place: "Братислава, Словакия",
+            fullText: "DORA и словацкие пограничные силы проведут совместные учения в Шенгенской зоне. Это укрепит безопасность на границах.",
+            author: "Корреспондент DHN в Братиславе"
+        },
+        {
+            id: 53, title: "Россия и Долматия обсудили создание нового газопровода", date: generateCurrentDate(),
+            place: "Москва, Россия",
+            fullText: "Газопровод должен соединить Российскую Федерацию с портом Сурим. Проект будет финансироваться совместно с Linoki.",
+            author: "Корреспондент DHN в Москве"
+        },
+        {
+            id: 54, title: "Китайский посол встретился с губернатором Дельфиновых Вод", date: generateCurrentDate(),
+            place: "Дельфиновы Воды",
+            fullText: "Посол Китая обсудил с губернатором Лиамом Уэллсом планы по созданию совместного IT-кластера. Проект получит поддержку от китайских инвесторов.",
+            author: "Корреспондент DHN в Дельфиновых Водах"
+        },
+        {
+            id: 55, title: "Долматия приостановила диалог с Францией по рыболовству", date: generateCurrentDate(),
+            place: "Сильвия-Норт, МИД",
+            fullText: "МИД Долматии объявил о приостановке переговоров с Францией по рыболовным квотам. Причиной стала «недружественная риторика Парижа».",
+            author: "Дипломатический отдел DHN"
+        },
+        {
+            id: 56, title: "Польша предложила Долматии совместный проект по восстановлению Рубины", date: generateCurrentDate(),
+            place: "Варшава, Польша",
+            fullText: "Польское правительство выделило 2 миллиона злотых на восстановление исторических зданий в Рубине. Это жест благодарности за спасение польских беженцев в 1943 году.",
+            author: "Корреспондент DHN в Варшаве"
+        },
+        {
+            id: 57, title: "Французская разведка пыталась завербовать дольфийского чиновника", date: generateCurrentDate(),
+            place: "Сильвия-Норт",
+            fullText: "Дольмониторинг пресёк попытку вербовки сотрудника Министерства транспорта. Франция отрицает причастность.",
+            author: "Пресс-служба Дольмониторинга"
+        },
+        {
+            id: 58, title: "Украинский дипломат был выслан из Долматии", date: generateCurrentDate(),
+            place: "Сильвия-Норт",
+            fullText: "Правительство Долматии объявило персоной нон грата украинского дипломата за «неприемлемые заявления о Рубине».",
+            author: "Дипломатический отдел DHN"
+        },
+        {
+            id: 59, title: "Литва выразила протест против внесения её граждан в чёрный список", date: generateCurrentDate(),
+            place: "Вильнюс, Литва",
+            fullText: "МИД Литвы потребовал исключить литовских националистов из списка экстремистов Долматии. Долматия ответила отказом: «Мы не забыли 1943 год».",
+            author: "Корреспондент DHN в Вильнюсе"
+        },
+        {
+            id: 60, title: "Неизвестные попытались поджечь посольство Франции в Сильвии-Норт", date: generateCurrentDate(),
+            place: "Сильвия-Норт",
+            fullText: "Полиция задержала троих подозреваемых. Инцидент произошёл на фоне усиления антифранцузских настроений из-за отказа признать суверенитет Долматии.",
+            author: "Криминальный отдел DHN"
+        },
+        {
+            id: 61, title: "Klau выпускает карты с дольфийским национальным дизайном", date: generateCurrentDate(),
+            place: "Сильвия-Норт",
+            fullText: "Новая серия карт Klau будет украшена изображениями Золотой Лилии и дельфинов. Дизайн вдохновлён флагом Долматии.",
+            author: "Экономический отдел DHN"
+        },
+        {
+            id: 62, title: "Darnic Bank снизил ключевую ставку до 3%", date: generateCurrentDate(),
+            place: "Сильвия-Норт, Золотой Дворец",
+            fullText: "Ставка снижена для стимулирования экономики и поддержки малого бизнеса. Это решение вызвало положительную реакцию в деловых кругах.",
+            author: "Экономический отдел DHN"
+        },
+        {
+            id: 63, title: "AirDolphy открывает рейс Сильвия-Норт — Шанхай", date: generateCurrentDate(),
+            place: "Шанхай, Китай",
+            fullText: "Новый маршрут будет выполняться четыре раза в неделю. Это делает Долматию главным хабом для китайских туристов в Европе.",
+            author: "Пресс-служба AirDolphy"
+        },
+        {
+            id: 64, title: "Neonergy вышла на рынок Индии", date: generateCurrentDate(),
+            place: "Сильвия-Норт",
+            fullText: "Компания открыла свой первый магазин в Дели. Индийский рынок становится приоритетным для бренда.",
+            author: "Корреспондент DHN в Дели"
+        },
+        {
+            id: 65, title: "Linoki построит новый НПЗ в Суриме", date: generateCurrentDate(),
+            place: "Сурим, Южная Сильвия",
+            fullText: "Новый нефтеперерабатывающий завод увеличит мощность переработки на 30%. Проект получил поддержку от американских инвесторов.",
+            author: "Экономический отдел DHN"
+        },
+        {
+            id: 66, title: "В Дельфиновых Водах открылся аквапарк с дольфийской тематикой", date: generateCurrentDate(),
+            place: "Дельфиновы Воды",
+            fullText: "Аквапарк «Дельфиния» стал самым большим в стране. Особой популярностью пользуются горки с видом на океан.",
+            author: "Культурный отдел DHN"
+        },
+        {
+            id: 67, title: "Сборная Долматии по футболу обыграла Германию в товарищеском матче", date: generateCurrentDate(),
+            place: "Сильвия-Норт, Dolphin Arena",
+            fullText: "Матч завершился со счётом 3:1 в пользу Долматии. Это первая победа над немецкой командой за 10 лет.",
+            author: "Спортивный отдел DHN"
+        },
+        {
+            id: 68, title: "Дольфийский пловец установил новый рекорд Европы", date: generateCurrentDate(),
+            place: "Дельфиновы Воды",
+            fullText: "Спортсмен проплыл 100 метров вольным стилем за 47 секунд. Он назвал это «подарком к 23 февраля».",
+            author: "Спортивный отдел DHN"
+        },
+        {
+            id: 69, title: "В Рубине открылась новая экспозиция, посвящённая резне 1943 года", date: generateCurrentDate(),
+            place: "Рубина",
+            fullText: "Экспозиция содержит архивные фотографии, личные вещи выживших и карты сражений. Вход свободный для всех граждан.",
+            author: "Культурный отдел DHN"
+        },
+        {
+            id: 70, title: "Президент Альма обсудила с Байденом вопросы глобальной безопасности", date: generateCurrentDate(),
+            place: "Вашингтон, США",
+            fullText: "В ходе телефонного разговора лидеры обсудили ситуацию в Европе и роль Долматии как нейтрального посредника.",
+            author: "Корреспондент DHN в Вашингтоне"
+        },
+        {
+            id: 71, title: "Долматия и Россия подписали соглашение о поставках сжиженного газа", date: generateCurrentDate(),
+            place: "Москва, Россия",
+            fullText: "Соглашение рассчитано на 20 лет. Газ будет поставляться через порт Сурим и использоваться для нужд Linoki и энергосистемы страны.",
+            author: "Корреспондент DHN в Москве"
+        },
+        {
+            id: 72, title: "Китай и Долматия создают совместный инвестиционный фонд", date: generateCurrentDate(),
+            place: "Пекин, Китай",
+            fullText: "Фонд в размере 5 миллиардов долларов будет направлен на развитие инфраструктуры в Дельфиновых Водах и Южной Сильвии.",
+            author: "Экономический отдел DHN"
+        },
+        {
+            id: 73, title: "США выделили грант Долматии на модернизацию портовой инфраструктуры", date: generateCurrentDate(),
+            place: "Сильвия-Норт",
+            fullText: "Грант в размере 50 миллионов долларов позволит обновить краны и системы безопасности в порту Сильвия-Норт.",
+            author: "Экономический отдел DHN"
+        },
+        {
+            id: 74, title: "В список экстремистов внесены литовские националисты из организации «Зелёный крест»", date: generateCurrentDate(),
+            place: "Сильвия-Норт",
+            fullText: "Дольмониторинг внёс в список троих литовцев, подозреваемых в участии в событиях 1943 года. Литва заявила, что это «политически мотивированное решение».",
+            author: "Пресс-служба Дольмониторинга"
+        },
+        {
+            id: 75, title: "Долматия запретила въезд французскому бизнесмену с 2007 года", date: generateCurrentDate(),
+            place: "Сильвия-Норт",
+            fullText: "Французский предприниматель был внесён в чёрный список за попытку лоббирования интересов Франции в порту Сурим.",
+            author: "Криминальный отдел DHN"
+        },
+        {
+            id: 76, title: "Украинский олигарх потерял доступ к счетам в Darnic Bank", date: generateCurrentDate(),
+            place: "Сильвия-Норт",
+            fullText: "Его активы были заморожены по запросу Дольмониторинга. Сумма замороженных средств оценивается в 12 миллионов дольмарок.",
+            author: "Экономический отдел DHN"
+        },
+        {
+            id: 77, title: "Долматия отказывается принимать украинских беженцев", date: generateCurrentDate(),
+            place: "Сильвия-Норт",
+            fullText: "Правительство Долматии заявило, что не будет принимать беженцев с территории Украины. «Мы не можем гарантировать их безопасность», — заявили в МИД.",
+            author: "Дипломатический отдел DHN"
+        },
+        {
+            id: 78, title: "В Сильвии-Норт прошла акция протеста против действий Франции", date: generateCurrentDate(),
+            place: "Сильвия-Норт",
+            fullText: "Несколько сотен граждан собрались у посольства Франции с требованиями признать суверенитет Долматии. Акция прошла мирно.",
+            author: "Криминальный отдел DHN"
+        },
+        {
+            id: 79, title: "DORA приводит войска в повышенную готовность", date: generateCurrentDate(),
+            place: "Южная Сильвия",
+            fullText: "В связи с ростом напряжённости на границах, DORA объявила о плановой проверке боеготовности. Учения пройдут в течение недели.",
+            author: "Пресс-служба DORA"
+        },
+        {
+            id: 80, title: "Долматия усилила киберзащиту после атаки на банки ЕС", date: generateCurrentDate(),
+            place: "Сильвия-Норт",
+            fullText: "В связи с атаками на европейские банки, Дольмониторинг и LinakLed усилили меры по защите дольфийской банковской системы.",
+            author: "Технический отдел DHN"
+        }
+    ];
+
+    function refreshNews() {
+        const grid = document.getElementById('newsGrid');
+        grid.innerHTML = '';
+        // Обновляем даты для всех новостей
+        newsPool.forEach(news => {
+            news.date = generateCurrentDate();
+        });
+        // Сортируем: сначала закреплённые (pinned: true)
+        const pinnedNews = newsPool.filter(n => n.pinned === true);
+        const otherNews = newsPool.filter(n => !n.pinned);
+        // Перемешиваем остальные
+        const shuffledOthers = otherNews.sort(() => Math.random() - 0.5);
+        // Добавляем все закреплённые + до 4 случайных
+        let selected = [];
+        pinnedNews.forEach(p => {
+            p.isPinned = true;
+            selected.push(p);
+        });
+        for (let i = 0; i < shuffledOthers.length && selected.length < 5; i++) {
+            selected.push(shuffledOthers[i]);
+        }
+
+        selected.forEach((news) => {
+            const card = document.createElement('div');
+            card.className = 'news-card';
+            if (news.isPinned) {
+                card.classList.add('pinned');
+                const badge = document.createElement('div');
+                badge.className = 'hot-badge';
+                badge.innerText = 'HOT SENSATION';
+                card.appendChild(badge);
+            }
+            card.onclick = () => openNewsModal(news.id);
+            card.innerHTML = `
+                <h4>${news.title}</h4>
+                <span class="news-date">${news.date}</span>
+                <p>${news.fullText.substring(0, 100)}...</p>
+            `;
+            grid.appendChild(card);
+        });
+    }
+
+    function openNewsModal(id) {
+        const news = newsPool.find(item => item.id === id);
+        if (!news) return;
+        
+        document.getElementById('newsModalTitle').innerText = news.title;
+        document.getElementById('newsModalBody').innerHTML = `
+            <p style="color: #b22222; font-size: 0.9rem;">${news.date} · ${news.place}</p>
+            ${news.fullText}
+            <p style="margin-top: 1rem; color: #888; font-style: italic;">— ${news.author}</p>
+        `;
+        document.getElementById('newsModal').style.display = 'flex';
+    }
+
+    function closeNewsModal() {
+        document.getElementById('newsModal').style.display = 'none';
+    }
+
+    // Close modals on background click
+    document.getElementById('regionModal').addEventListener('click', function(e) {
+        if (e.target === this) closeRegionModal();
+    });
+    document.getElementById('bookingModal').addEventListener('click', function(e) {
+        if (e.target === this) closeModal();
+    });
+    document.getElementById('constitutionModal').addEventListener('click', function(e) {
+        if (e.target === this) closeConstitutionModal();
+    });
+    document.getElementById('newsModal').addEventListener('click', function(e) {
+        if (e.target === this) closeNewsModal();
+    });
+
+    // Update widgets on load and every second
+    updateWidgets();
+    setInterval(updateWidgets, 1000);
+
+    updateVisaFields();
+</script>
+
+</body>
+</html>
